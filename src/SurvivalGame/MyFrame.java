@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import javax.swing.JProgressBar;
 
 
 public class MyFrame extends JFrame implements KeyListener{
+
     Toolkit tk = Toolkit.getDefaultToolkit();
     int xSize = ((int) tk.getScreenSize().getWidth());
     int ySize = ((int) tk.getScreenSize().getHeight());
@@ -30,18 +32,17 @@ public class MyFrame extends JFrame implements KeyListener{
     ImageIcon menu;
     JButton inventoryButton, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
     JPanel inventoryPanel, healthBarPanel;
-    String inventoryStatus;
-    int playerHp;
+
+
     JProgressBar healthBar;
 
     InventoryHandler iHandler = new InventoryHandler();
 
     SuperItem[] playerItem = new SuperItem[5];
-    Item_HealingPotion healingPotion = new Item_HealingPotion();
-    Item_Poison poison = new Item_Poison();
-    Item_Empty empty = new Item_Empty();
+
 
     MyFrame(){
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(xSize,ySize);
         this.setLayout(null);
@@ -54,7 +55,7 @@ public class MyFrame extends JFrame implements KeyListener{
 
         healthBar = new JProgressBar(0,100);
         healthBar.setPreferredSize(new Dimension(300,30));
-        healthBar.setValue(playerHp);
+        healthBar.setValue(Game.game.getCurrentPlayer().playerHp); //Need to pass in player.
         healthBarPanel.add(healthBar);
 
         inventoryButton = new JButton("Inventory");
@@ -82,30 +83,35 @@ public class MyFrame extends JFrame implements KeyListener{
         itemButton1.setFocusPainted(false);
         itemButton1.addActionListener(iHandler);
         itemButton1.setActionCommand("item1");
+        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[0].getName()));
         itemButton2 = new JButton();
         itemButton2.setBackground(black);
         itemButton2.setForeground(white);
         itemButton2.setFocusPainted(false);
         itemButton2.addActionListener(iHandler);
-        itemButton2.setActionCommand("item1");
+        itemButton2.setActionCommand("item2");
+        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[1].getName()));
         itemButton3 = new JButton();
         itemButton3.setBackground(black);
         itemButton3.setForeground(white);
         itemButton3.setFocusPainted(false);
         itemButton3.addActionListener(iHandler);
-        itemButton3.setActionCommand("item1");
+        itemButton3.setActionCommand("item3");
+        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[2].getName()));
         itemButton4 = new JButton();
         itemButton4.setBackground(black);
         itemButton4.setForeground(white);
         itemButton4.setFocusPainted(false);
         itemButton4.addActionListener(iHandler);
-        itemButton4.setActionCommand("item1");
+        itemButton4.setActionCommand("item4");
+        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[3].getName()));
         itemButton5 = new JButton();
         itemButton5.setBackground(black);
         itemButton5.setForeground(white);
         itemButton5.setFocusPainted(false);
         itemButton5.addActionListener(iHandler);
-        itemButton5.setActionCommand("item1");
+        itemButton5.setActionCommand("item5");
+        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[4].getName()));
 
         inventoryPanel.add(itemButton1);
         inventoryPanel.add(itemButton2);
@@ -113,7 +119,7 @@ public class MyFrame extends JFrame implements KeyListener{
         inventoryPanel.add(itemButton4);
         inventoryPanel.add(itemButton5);
 
-        inventoryPanel.setVisible(true);
+        inventoryPanel.setVisible(false);
 
         menu = new ImageIcon("MainMenuPicture.png");
 
@@ -144,30 +150,6 @@ public class MyFrame extends JFrame implements KeyListener{
         this.setVisible(true);
     }
 
-    public void playerSetup(){
-        playerHp = 50;
-
-        inventoryStatus = "close";
-
-        playerItem[0] = healingPotion;
-        playerItem[1] = poison;
-        playerItem[2] = empty;
-        playerItem[3] = empty;
-        playerItem[4] = empty;
-    }
-
-    public void itemUsed(int slotNumber){
-
-        playerHp = playerHp + playerItem[slotNumber].healingValue;
-
-        playerItem[slotNumber] = empty;
-        itemButton1.setText(playerItem[0].name);
-        itemButton2.setText(playerItem[1].name);
-        itemButton3.setText(playerItem[2].name);
-        itemButton4.setText(playerItem[3].name);
-        itemButton5.setText(playerItem[4].name);
-
-    }
 
     @Override
     public void keyTyped(KeyEvent e) {
