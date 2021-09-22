@@ -3,36 +3,38 @@ package SurvivalGame;
 
 public class Game {
 
-    public static player currentPlayer;
-    public static Game game;
-    MyFrame mainFrame = new MyFrame();
+    public static Player currentPlayer;
 
 
     public static void main(String[] args) {
-        game = new Game();
-    }
 
-
-    public Game() {
-        currentPlayer = new player();
+        currentPlayer = new Player();
         String filepath = "Main.wav";
         Music musicObject = new Music();
         musicObject.playMusic(filepath);
-
         InventoryHandler iHandler = new InventoryHandler();
+
+
+        MyFrame frame = new MyFrame();
+        new MyFrame();
 
     }
 
-    public player getCurrentPlayer() {
+
+
+
+    public static Player getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public void setCurrentPlayer(player thisPlayer) {
+    public static void setCurrentPlayer(Player thisPlayer) {
         currentPlayer = thisPlayer;
     }
 
-    public MyFrame getCurrentFrame() {
-        return mainFrame;
+    public static MyFrame getCurrentFrame() {
+        return new MyFrame();
     }
+
+
 
 }

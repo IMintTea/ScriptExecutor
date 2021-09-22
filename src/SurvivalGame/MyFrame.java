@@ -41,6 +41,7 @@ public class MyFrame extends JFrame implements KeyListener{
     SuperItem[] playerItem = new SuperItem[5];
 
 
+
     MyFrame(){
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +56,7 @@ public class MyFrame extends JFrame implements KeyListener{
 
         healthBar = new JProgressBar(0,100);
         healthBar.setPreferredSize(new Dimension(300,30));
-        healthBar.setValue(Game.game.getCurrentPlayer().playerHp); //Need to pass in player.
+        healthBar.setValue(Game.getCurrentPlayer().playerHp); //Need to pass in player.
         healthBarPanel.add(healthBar);
 
         inventoryButton = new JButton("Inventory");
@@ -83,35 +84,35 @@ public class MyFrame extends JFrame implements KeyListener{
         itemButton1.setFocusPainted(false);
         itemButton1.addActionListener(iHandler);
         itemButton1.setActionCommand("item1");
-        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[0].getName()));
+        itemButton1.setText((Game.currentPlayer.getPlayerItems()[0].getName()));
         itemButton2 = new JButton();
         itemButton2.setBackground(black);
         itemButton2.setForeground(white);
         itemButton2.setFocusPainted(false);
         itemButton2.addActionListener(iHandler);
         itemButton2.setActionCommand("item2");
-        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[1].getName()));
+        itemButton1.setText((Game.currentPlayer.getPlayerItems()[1].getName()));
         itemButton3 = new JButton();
         itemButton3.setBackground(black);
         itemButton3.setForeground(white);
         itemButton3.setFocusPainted(false);
         itemButton3.addActionListener(iHandler);
         itemButton3.setActionCommand("item3");
-        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[2].getName()));
+        itemButton1.setText((Game.currentPlayer.getPlayerItems()[2].getName()));
         itemButton4 = new JButton();
         itemButton4.setBackground(black);
         itemButton4.setForeground(white);
         itemButton4.setFocusPainted(false);
         itemButton4.addActionListener(iHandler);
         itemButton4.setActionCommand("item4");
-        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[3].getName()));
+        itemButton1.setText((Game.currentPlayer.getPlayerItems()[3].getName()));
         itemButton5 = new JButton();
         itemButton5.setBackground(black);
         itemButton5.setForeground(white);
         itemButton5.setFocusPainted(false);
         itemButton5.addActionListener(iHandler);
         itemButton5.setActionCommand("item5");
-        itemButton1.setText((Game.game.currentPlayer.getPlayerItems()[4].getName()));
+        itemButton1.setText((Game.currentPlayer.getPlayerItems()[4].getName()));
 
         inventoryPanel.add(itemButton1);
         inventoryPanel.add(itemButton2);

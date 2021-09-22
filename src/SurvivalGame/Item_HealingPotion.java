@@ -6,7 +6,7 @@ public class Item_HealingPotion extends SuperItem{
 
     Item_HealingPotion(){
 
-        name = "HealingPtion";
+        name = "HealingPotion";
         healingValue = 50;
     }
 }
