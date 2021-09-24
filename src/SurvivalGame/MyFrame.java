@@ -33,13 +33,9 @@ public class MyFrame extends JFrame implements KeyListener{
     JButton inventoryButton, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
     JPanel inventoryPanel, healthBarPanel;
 
-
     JProgressBar healthBar;
 
     InventoryHandler iHandler = new InventoryHandler();
-
-    SuperItem[] playerItem = new SuperItem[5];
-
 
 
     MyFrame(){
@@ -51,19 +47,20 @@ public class MyFrame extends JFrame implements KeyListener{
 
         healthBarPanel = new JPanel();
         healthBarPanel.setBounds(250,250,300,30);
+        healthBarPanel.setLocation(0,700);
         healthBarPanel.setBackground(Color.blue);
         this.add(healthBarPanel);
 
         healthBar = new JProgressBar(0,100);
         healthBar.setPreferredSize(new Dimension(300,30));
-        healthBar.setValue(Game.getCurrentPlayer().playerHp); //Need to pass in player.
+        healthBar.setValue(Game.getCurrentPlayer().playerHp);
         healthBarPanel.add(healthBar);
 
         inventoryButton = new JButton("Inventory");
         inventoryButton.setBackground(black);
         inventoryButton.setForeground(white);
         inventoryButton.setSize(200, 50);
-        inventoryButton.setLocation(850, 900);
+        inventoryButton.setLocation(50, 750);
         inventoryButton.setVisible(true);
         inventoryButton.setFocusPainted(false);
         inventoryButton.addActionListener(iHandler);

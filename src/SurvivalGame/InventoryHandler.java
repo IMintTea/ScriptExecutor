@@ -1,5 +1,6 @@
 package SurvivalGame;
 
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -8,10 +9,10 @@ public class InventoryHandler implements ActionListener{
     Player currentPlayer;
 
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         currentPlayer = Game.currentPlayer;
+
 
         String yourChoice = e.getActionCommand();
 
@@ -22,7 +23,15 @@ public class InventoryHandler implements ActionListener{
                     Game.getCurrentFrame().inventoryPanel.setVisible(true);
 
                     currentPlayer.inventoryStatus = "Open";
-                }
+
+                }else if(currentPlayer.inventoryStatus.equals("open")){
+
+                    Game.getCurrentFrame().inventoryPanel.setVisible(false);
+
+                    currentPlayer.inventoryStatus = "close";
+            }
+
+
                 break;
             case "item1":
                 currentPlayer.itemUsed(0);
@@ -39,6 +48,7 @@ public class InventoryHandler implements ActionListener{
             case "item5":
                 currentPlayer.itemUsed(4);
                 break;}
+
     }
 
 }

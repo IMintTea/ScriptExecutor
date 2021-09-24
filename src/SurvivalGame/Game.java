@@ -16,7 +16,7 @@ public class Game {
 
 
         MyFrame frame = new MyFrame();
-        new MyFrame();
+
 
     }
 

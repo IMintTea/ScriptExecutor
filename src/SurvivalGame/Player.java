@@ -3,7 +3,7 @@ package SurvivalGame;
 public class Player {
 
     int playerHp;
-    String inventoryStatus;
+    public static String inventoryStatus;
     SuperItem[] playerItem = new SuperItem[5];
     Item_HealingPotion healingPotion = new Item_HealingPotion();
     Item_Poison poison = new Item_Poison();
