@@ -7,24 +7,24 @@ import java.awt.event.ActionEvent;
 public class InventoryHandler implements ActionListener{
 
     Player currentPlayer;
-
+    JToggleButton inventoryButton;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         currentPlayer = Game.currentPlayer;
-
+        inventoryButton = MyFrame.inventoryButton;
 
         String yourChoice = e.getActionCommand();
 
         switch(yourChoice){
             case "inventoryButton":
-                if(currentPlayer.inventoryStatus.equals("close")) {
+                if (inventoryButton.isSelected())  {
 
                     Game.getCurrentFrame().inventoryPanel.setVisible(true);
 
                     currentPlayer.inventoryStatus = "Open";
 
-                }else if(currentPlayer.inventoryStatus.equals("open")){
+                }else {
 
                     Game.getCurrentFrame().inventoryPanel.setVisible(false);
 

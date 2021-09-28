@@ -21,7 +21,7 @@ public class Music {
                 clip.open(audioInput);
                 clip.start();
 
-                JOptionPane.showMessageDialog(null,"Press OK to stop playing");
+                JOptionPane.showMessageDialog(null,"Press OK to launch Game");
 
             }else{
                 System.out.println("Cant find music file");

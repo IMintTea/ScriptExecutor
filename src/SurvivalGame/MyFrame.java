@@ -6,16 +6,12 @@ import static java.awt.Color.white;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Arrays;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-
+import javax.swing.*;
 
 
 public class MyFrame extends JFrame implements KeyListener{
@@ -27,10 +23,9 @@ public class MyFrame extends JFrame implements KeyListener{
     // School screen: 1920, 1080
 
     JLabel shrek;
-    ImageIcon icon;
-    ImageIcon map;
-    ImageIcon menu;
-    JButton inventoryButton, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
+    ImageIcon icon, map, menu, youDied;
+    JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
+    public static JToggleButton inventoryButton;
     JPanel inventoryPanel, healthBarPanel;
 
     JProgressBar healthBar;
@@ -56,7 +51,22 @@ public class MyFrame extends JFrame implements KeyListener{
         healthBar.setValue(Game.getCurrentPlayer().playerHp);
         healthBarPanel.add(healthBar);
 
-        inventoryButton = new JButton("Inventory");
+        damage = new JButton("That's a lot of damage");
+        damage.setForeground(white);
+        damage.setBackground(black);
+        damage.setSize(200, 50);
+        damage.setLocation(50, 800);
+        damage.setVisible(true);
+        this.add(damage);
+        damage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                healthBar.setValue((Game.getCurrentPlayer().playerHp) - 10);
+                System.out.println(Game.getCurrentPlayer().playerHp);
+            }
+        });
+
+        inventoryButton = new JToggleButton("Inventory");
         inventoryButton.setBackground(black);
         inventoryButton.setForeground(white);
         inventoryButton.setSize(200, 50);
@@ -120,28 +130,25 @@ public class MyFrame extends JFrame implements KeyListener{
         inventoryPanel.setVisible(false);
 
         menu = new ImageIcon("MainMenuPicture.png");
-
         JLabel jl1= new JLabel();
         jl1.setSize(xSize,ySize);
         jl1.setIcon(menu);
         //this.add(jl1);
 
         map = new ImageIcon("Map1.png");
-
         JLabel jl = new JLabel();
         jl.setSize(xSize,ySize);
         jl.setIcon(map);
 
 
         icon = new ImageIcon("Shrek.png");
-
         shrek = new JLabel();
         shrek.setBounds(0, 0, 200, 200);
         shrek.setIcon(icon);
 
-        Color myBackgroundColor = new Color(31, 143, 43);
 
-        this.getContentPane().setBackground(myBackgroundColor);
+
+
 
         this.add(shrek);
         this.add(jl);
