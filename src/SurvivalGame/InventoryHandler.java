@@ -17,7 +17,6 @@ public class InventoryHandler implements ActionListener{
         String yourChoice = e.getActionCommand();
 
 
-
         switch(yourChoice){
             case "inventoryButton":
                 if (inventoryButton.isSelected() && currentPlayer.inventoryStatus.equals("close"))  {
@@ -26,7 +25,7 @@ public class InventoryHandler implements ActionListener{
 
                     currentPlayer.inventoryStatus = "Open";
 
-                    MyFrame.revalidate();
+
 
                 }else {
 
@@ -34,7 +33,7 @@ public class InventoryHandler implements ActionListener{
 
                     currentPlayer.inventoryStatus = "close";
 
-            }
+                }
 
 
                 break;
