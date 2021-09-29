@@ -15,7 +15,7 @@ public class Game {
         InventoryHandler iHandler = new InventoryHandler();
 
 
-        MyFrame frame = new MyFrame();
+        MyFrame frame = new MyFrame(); //runs frame in MyFrame
 
 
     }
