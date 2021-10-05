@@ -9,7 +9,7 @@ public class Game {
     public static void main(String[] args) {
 
         currentPlayer = new Player();
-//        String filepath = "Main.wav";
+//        String filepath = "Music/Main.wav";
 //        Music musicObject = new Music();
 //        musicObject.playMusic(filepath);
         InventoryHandler iHandler = new InventoryHandler();

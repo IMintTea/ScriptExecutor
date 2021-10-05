@@ -40,10 +40,11 @@ public class MyFrame extends JFrame implements KeyListener{
         this.addKeyListener(this);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(true);
+        this.setBackground(black);
 
         //<editor-fold desc="Death">
 
-        youDied = new ImageIcon("YouDied.png");
+        youDied = new ImageIcon("Images/YouDied.png");
         JLabel death = new JLabel();
         death.setSize(xSize,ySize);
         death.setIcon(youDied);
@@ -207,7 +208,7 @@ public class MyFrame extends JFrame implements KeyListener{
         //</editor-fold>
 
         //<editor-fold desc="Main Menu">
-        menu = new ImageIcon("MainMenuPicture.png");
+        menu = new ImageIcon("Images/MainMenuPicture.png");
         JLabel jl1= new JLabel();
         jl1.setSize(xSize,ySize);
         jl1.setIcon(menu);
@@ -215,7 +216,7 @@ public class MyFrame extends JFrame implements KeyListener{
         //</editor-fold>
 
         //<editor-fold desc="Player Model">
-        icon = new ImageIcon("Shrek.png");
+        icon = new ImageIcon("Images/Shrek.png");
         shrek = new JLabel();
         shrek.setBounds(0, 0, 200, 200);
         shrek.setIcon(icon);
@@ -223,7 +224,7 @@ public class MyFrame extends JFrame implements KeyListener{
         //</editor-fold>
 
         //<editor-fold desc="Map">
-        map = new ImageIcon("Map1.png");
+        map = new ImageIcon("Images/Map1.png");
         JLabel jl = new JLabel();
         jl.setSize(xSize,ySize);
         jl.setIcon(map);
@@ -231,6 +232,8 @@ public class MyFrame extends JFrame implements KeyListener{
         //</editor-fold>
 
         this.setVisible(true);
+
+
     }
 
     //<editor-fold desc="Player Movement">
@@ -271,10 +274,10 @@ public class MyFrame extends JFrame implements KeyListener{
         if(shrek.getY()== 0){
             shrek.setLocation(shrek.getX(), shrek.getY()+15);
         }
-        if(shrek.getX()== 1920){
+        if(shrek.getX()== xSize){
             shrek.setLocation(shrek.getX()-15, shrek.getY());
         }
-        if(shrek.getY()== 1080){
+        if(shrek.getY()== ySize){
             shrek.setLocation(shrek.getX(), shrek.getY()-15);
         }
     }
