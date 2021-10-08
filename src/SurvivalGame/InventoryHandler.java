@@ -56,4 +56,3 @@ public class InventoryHandler implements ActionListener{
     }
 
 }
-

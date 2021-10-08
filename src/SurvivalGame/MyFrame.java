@@ -2,15 +2,15 @@ package SurvivalGame;
 
 import java.awt.*;
 
-import static java.awt.Color.black;
-import static java.awt.Color.white;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import javax.swing.*;
+
+import static java.awt.Color.*;
 
 public class MyFrame extends JFrame implements KeyListener{
 
@@ -98,55 +98,55 @@ public class MyFrame extends JFrame implements KeyListener{
         inventoryButton.setLocation(50, 750);
         inventoryButton.setVisible(true);
         inventoryButton.setFocusPainted(false);
-        //inventoryButton.addActionListener(iHandler);
-        inventoryButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currentPlayer = Game.currentPlayer;
-                inventoryButton = MyFrame.inventoryButton;
-
-                String yourChoice = e.getActionCommand();
-
-
-                switch(yourChoice){
-                    case "inventoryButton":
-                        if (inventoryButton.isSelected() && currentPlayer.inventoryStatus.equals("close"))  {
-
-
-
-                            Game.getCurrentFrame().inventoryPanel.setVisible(true);
-
-                            currentPlayer.inventoryStatus = "Open";
-
-
-                        }else {
-
-                            Game.getCurrentFrame().inventoryPanel.setVisible(false);
-
-                            currentPlayer.inventoryStatus = "close";
-
-
-                        }
-
-
-                        break;
-                    case "item1":
-                        currentPlayer.itemUsed(0);
-                        break;
-                    case "item2":
-                        currentPlayer.itemUsed(1);
-                        break;
-                    case"item3":
-                        currentPlayer.itemUsed(2);
-                        break;
-                    case "item4":
-                        currentPlayer.itemUsed(3);
-                        break;
-                    case "item5":
-                        currentPlayer.itemUsed(4);
-                        break;}
-            }
-        });
+        inventoryButton.addActionListener(iHandler);
+//        inventoryButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                currentPlayer = Game.currentPlayer;
+//                inventoryButton = MyFrame.inventoryButton;
+//
+//                String yourChoice = e.getActionCommand();
+//
+//
+//                switch(yourChoice){
+//                    case "inventoryButton":
+//                        if (inventoryButton.isSelected() && currentPlayer.inventoryStatus.equals("close"))  {
+//
+//
+//
+//                            Game.getCurrentFrame().inventoryPanel.setVisible(true);
+//
+//                            currentPlayer.inventoryStatus = "Open";
+//
+//
+//                        }else {
+//
+//                            Game.getCurrentFrame().inventoryPanel.setVisible(false);
+//
+//                            currentPlayer.inventoryStatus = "close";
+//
+//
+//                        }
+//
+//
+//                        break;
+//                    case "item1":
+//                        currentPlayer.itemUsed(0);
+//                        break;
+//                    case "item2":
+//                        currentPlayer.itemUsed(1);
+//                        break;
+//                    case"item3":
+//                        currentPlayer.itemUsed(2);
+//                        break;
+//                    case "item4":
+//                        currentPlayer.itemUsed(3);
+//                        break;
+//                    case "item5":
+//                        currentPlayer.itemUsed(4);
+//                        break;}
+//            }
+//        });
 
 
 
@@ -168,35 +168,35 @@ public class MyFrame extends JFrame implements KeyListener{
         itemButton1.setFocusPainted(false);
         itemButton1.addActionListener(iHandler);
         itemButton1.setActionCommand("item1");
-        itemButton1.setText((Game.currentPlayer.getPlayerItems()[0].getName()));
+        itemButton1.setText(Game.currentPlayer.getPlayerItems()[0].getName());
         itemButton2 = new JButton();
         itemButton2.setBackground(black);
         itemButton2.setForeground(white);
         itemButton2.setFocusPainted(false);
         itemButton2.addActionListener(iHandler);
         itemButton2.setActionCommand("item2");
-        itemButton1.setText((Game.currentPlayer.getPlayerItems()[1].getName()));
+        itemButton2.setText(Game.currentPlayer.getPlayerItems()[1].getName());
         itemButton3 = new JButton();
         itemButton3.setBackground(black);
         itemButton3.setForeground(white);
         itemButton3.setFocusPainted(false);
         itemButton3.addActionListener(iHandler);
         itemButton3.setActionCommand("item3");
-        itemButton1.setText((Game.currentPlayer.getPlayerItems()[2].getName()));
+        itemButton3.setText(Game.currentPlayer.getPlayerItems()[2].getName());
         itemButton4 = new JButton();
         itemButton4.setBackground(black);
         itemButton4.setForeground(white);
         itemButton4.setFocusPainted(false);
         itemButton4.addActionListener(iHandler);
         itemButton4.setActionCommand("item4");
-        itemButton1.setText((Game.currentPlayer.getPlayerItems()[3].getName()));
+        itemButton4.setText(Game.currentPlayer.getPlayerItems()[3].getName());
         itemButton5 = new JButton();
         itemButton5.setBackground(black);
         itemButton5.setForeground(white);
         itemButton5.setFocusPainted(false);
         itemButton5.addActionListener(iHandler);
         itemButton5.setActionCommand("item5");
-        itemButton1.setText((Game.currentPlayer.getPlayerItems()[4].getName()));
+        itemButton5.setText(Game.currentPlayer.getPlayerItems()[4].getName());
 
         inventoryPanel.add(itemButton1);
         inventoryPanel.add(itemButton2);

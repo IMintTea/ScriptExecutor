@@ -21,19 +21,19 @@ public class Player {
         playerItem[3] = empty;
         playerItem[4] = empty;
     }
-
-    public void playerSetup(){
-        playerHp = 50;
-
-        inventoryStatus = "close";
-
-        playerItem[0] = healingPotion;
-        playerItem[1] = poison;
-        playerItem[2] = empty;
-        playerItem[3] = empty;
-        playerItem[4] = empty;
-
-    }
+//maybe use for respawn later
+//    public void playerSetup(){
+//        playerHp = 50;
+//
+//        inventoryStatus = "close";
+//
+//        playerItem[0] = healingPotion;
+//        playerItem[1] = poison;
+//        playerItem[2] = empty;
+//        playerItem[3] = empty;
+//        playerItem[4] = empty;
+//
+//    }
 
     public void itemUsed(int slotNumber){
 

@@ -14,7 +14,6 @@ public class Game {
 //        musicObject.playMusic(filepath);
         InventoryHandler iHandler = new InventoryHandler();
 
-
         MyFrame frame = new MyFrame(); //runs frame in MyFrame
 
 
