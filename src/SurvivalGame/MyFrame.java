@@ -56,12 +56,15 @@ public class MyFrame extends JFrame implements KeyListener{
         healthBarPanel = new JPanel();
         healthBarPanel.setBounds(250,250,300,30);
         healthBarPanel.setLocation(0,700);
-        healthBarPanel.setBackground(Color.blue);
+        healthBarPanel.setBackground(BLACK);
+        healthBarPanel.setForeground(GRAY);
         this.add(healthBarPanel);
 
         healthBar = new JProgressBar(0,100);
-        healthBar.setPreferredSize(new Dimension(300,30));
+        healthBar.setPreferredSize(new Dimension(300,20));
         healthBar.setValue(Game.getCurrentPlayer().playerHp);
+        healthBar.setBackground(GRAY);
+        healthBar.setForeground(RED);
         healthBarPanel.add(healthBar);
         //</editor-fold>
 
