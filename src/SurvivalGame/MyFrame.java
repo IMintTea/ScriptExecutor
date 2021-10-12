@@ -101,55 +101,55 @@ public class MyFrame extends JFrame implements KeyListener{
         inventoryButton.setLocation(50, 750);
         inventoryButton.setVisible(true);
         inventoryButton.setFocusPainted(false);
-        inventoryButton.addActionListener(iHandler);
-//        inventoryButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                currentPlayer = Game.currentPlayer;
-//                inventoryButton = MyFrame.inventoryButton;
-//
-//                String yourChoice = e.getActionCommand();
-//
-//
-//                switch(yourChoice){
-//                    case "inventoryButton":
-//                        if (inventoryButton.isSelected() && currentPlayer.inventoryStatus.equals("close"))  {
-//
-//
-//
-//                            Game.getCurrentFrame().inventoryPanel.setVisible(true);
-//
-//                            currentPlayer.inventoryStatus = "Open";
-//
-//
-//                        }else {
-//
-//                            Game.getCurrentFrame().inventoryPanel.setVisible(false);
-//
-//                            currentPlayer.inventoryStatus = "close";
-//
-//
-//                        }
-//
-//
-//                        break;
-//                    case "item1":
-//                        currentPlayer.itemUsed(0);
-//                        break;
-//                    case "item2":
-//                        currentPlayer.itemUsed(1);
-//                        break;
-//                    case"item3":
-//                        currentPlayer.itemUsed(2);
-//                        break;
-//                    case "item4":
-//                        currentPlayer.itemUsed(3);
-//                        break;
-//                    case "item5":
-//                        currentPlayer.itemUsed(4);
-//                        break;}
-//            }
-//        });
+        //inventoryButton.addActionListener(iHandler);
+        inventoryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentPlayer = Game.currentPlayer;
+                inventoryButton = MyFrame.inventoryButton;
+
+                String yourChoice = e.getActionCommand();
+
+
+                switch(yourChoice){
+                    case "inventoryButton":
+                        if (inventoryButton.isSelected() && currentPlayer.inventoryStatus.equals("close"))  {
+
+
+
+                            inventoryPanel.setVisible(true);
+
+                            currentPlayer.inventoryStatus = "Open";
+
+
+                        }else {
+
+                            inventoryPanel.setVisible(false);
+
+                            currentPlayer.inventoryStatus = "close";
+
+
+                        }
+
+
+                        break;
+                    case "item1":
+                        currentPlayer.itemUsed(0);
+                        break;
+                    case "item2":
+                        currentPlayer.itemUsed(1);
+                        break;
+                    case"item3":
+                        currentPlayer.itemUsed(2);
+                        break;
+                    case "item4":
+                        currentPlayer.itemUsed(3);
+                        break;
+                    case "item5":
+                        currentPlayer.itemUsed(4);
+                        break;}
+            }
+        });
 
 
 

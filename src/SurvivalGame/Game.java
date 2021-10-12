@@ -32,8 +32,7 @@ public class Game {
 
     public static MyFrame getCurrentFrame() {
         return new MyFrame();
+        //issue could be in the show inventory code.
     }
-
-
 
 }
