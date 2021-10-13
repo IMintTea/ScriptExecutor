@@ -12,7 +12,7 @@ public class Game {
 //        String filepath = "Music/Main.wav";
 //        Music musicObject = new Music();
 //        musicObject.playMusic(filepath);
-        InventoryHandler iHandler = new InventoryHandler();
+//        InventoryHandler iHandler = new InventoryHandler();
 
         MyFrame frame = new MyFrame(); //runs frame in MyFrame
 

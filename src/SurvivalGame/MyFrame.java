@@ -9,10 +9,11 @@ import java.awt.event.KeyListener;
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import static java.awt.Color.*;
 
-public class MyFrame extends JFrame implements KeyListener{
+public class MyFrame extends JFrame implements KeyListener {
 
     //<editor-fold desc="Get Screen Size">
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -23,17 +24,17 @@ public class MyFrame extends JFrame implements KeyListener{
 
     JLabel shrek;
     JProgressBar healthBar;
-    ImageIcon icon, map, menu, youDied;
+    ImageIcon icon, map, menu, youDied, InventoryButtonImage;
     JPanel inventoryPanel, healthBarPanel;
     public static JToggleButton inventoryButton;
     JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
 
-    InventoryHandler iHandler = new InventoryHandler();
+//    InventoryHandler iHandler = new InventoryHandler();
 
     Player currentPlayer;
 
 
-    MyFrame(){
+    MyFrame() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
@@ -46,7 +47,8 @@ public class MyFrame extends JFrame implements KeyListener{
 
         youDied = new ImageIcon("Images/YouDied.png");
         JLabel death = new JLabel();
-        death.setSize(xSize,ySize);
+        death.setSize(412, 122);
+        death.setLocation((xSize / 2) - 206, 300);
         death.setIcon(youDied);
         this.add(death);
         death.setVisible(false);
@@ -54,14 +56,14 @@ public class MyFrame extends JFrame implements KeyListener{
 
         //<editor-fold desc="Health Bar">
         healthBarPanel = new JPanel();
-        healthBarPanel.setBounds(250,250,300,30);
-        healthBarPanel.setLocation(0,700);
+        healthBarPanel.setBounds(250, 250, 500, 30);
+        healthBarPanel.setLocation((xSize / 2) - 250, 950);
         healthBarPanel.setBackground(BLACK);
         healthBarPanel.setForeground(GRAY);
         this.add(healthBarPanel);
 
-        healthBar = new JProgressBar(0,100);
-        healthBar.setPreferredSize(new Dimension(300,20));
+        healthBar = new JProgressBar(0, 100);
+        healthBar.setPreferredSize(new Dimension(500, 20));
         healthBar.setValue(Game.getCurrentPlayer().playerHp);
         healthBar.setBackground(GRAY);
         healthBar.setForeground(RED);
@@ -69,11 +71,11 @@ public class MyFrame extends JFrame implements KeyListener{
         //</editor-fold>
 
         //<editor-fold desc="Damage Button">
-        damage = new JButton("That's a lot of damage");
+        damage = new JButton("DMG");
         damage.setForeground(white);
         damage.setBackground(black);
-        damage.setSize(200, 50);
-        damage.setLocation(50, 800);
+        damage.setSize(80, 80);
+        damage.setLocation((xSize / 2) + 250, 970);
         damage.setVisible(true);
         this.add(damage);
         damage.addActionListener(new ActionListener() {
@@ -94,63 +96,22 @@ public class MyFrame extends JFrame implements KeyListener{
         //</editor-fold>
 
         //<editor-fold desc="Inventory Button">
-        inventoryButton = new JToggleButton("Inventory");
-        inventoryButton.setBackground(black);
-        inventoryButton.setForeground(white);
-        inventoryButton.setSize(200, 50);
-        inventoryButton.setLocation(50, 750);
+        InventoryButtonImage = new ImageIcon("Images/InventoryButton.jfif");
+        inventoryButton = new JToggleButton(InventoryButtonImage);
+        inventoryButton.setBackground(null);
+        inventoryButton.setForeground(null);
+        inventoryButton.setBorder(null);
+        inventoryButton.setSize(80, 80);
+        inventoryButton.setLocation((xSize / 2) - 330, 970);
         inventoryButton.setVisible(true);
         inventoryButton.setFocusPainted(false);
         //inventoryButton.addActionListener(iHandler);
         inventoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                currentPlayer = Game.currentPlayer;
-                inventoryButton = MyFrame.inventoryButton;
-
-                String yourChoice = e.getActionCommand();
-
-
-                switch(yourChoice){
-                    case "inventoryButton":
-                        if (inventoryButton.isSelected() && currentPlayer.inventoryStatus.equals("close"))  {
-
-
-
-                            inventoryPanel.setVisible(true);
-
-                            currentPlayer.inventoryStatus = "Open";
-
-
-                        }else {
-
-                            inventoryPanel.setVisible(false);
-
-                            currentPlayer.inventoryStatus = "close";
-
-
-                        }
-
-
-                        break;
-                    case "item1":
-                        currentPlayer.itemUsed(0);
-                        break;
-                    case "item2":
-                        currentPlayer.itemUsed(1);
-                        break;
-                    case"item3":
-                        currentPlayer.itemUsed(2);
-                        break;
-                    case "item4":
-                        currentPlayer.itemUsed(3);
-                        break;
-                    case "item5":
-                        currentPlayer.itemUsed(4);
-                        break;}
+                InventoryButtonAction(e);
             }
         });
-
 
 
         inventoryButton.setActionCommand("inventoryButton");
@@ -162,42 +123,42 @@ public class MyFrame extends JFrame implements KeyListener{
         inventoryPanel.setBackground(black);
         inventoryPanel.setForeground(black);
         inventoryPanel.setBounds(650, 200, 600, 600);
-        inventoryPanel.setLayout(new GridLayout(5,1));
+        inventoryPanel.setLayout(new GridLayout(5, 1));
         this.add(inventoryPanel);
 
         itemButton1 = new JButton();
         itemButton1.setBackground(black);
         itemButton1.setForeground(white);
         itemButton1.setFocusPainted(false);
-        itemButton1.addActionListener(iHandler);
+        itemButton1.addActionListener(inventoryButton.getAction());
         itemButton1.setActionCommand("item1");
         itemButton1.setText(Game.currentPlayer.getPlayerItems()[0].getName());
         itemButton2 = new JButton();
         itemButton2.setBackground(black);
         itemButton2.setForeground(white);
         itemButton2.setFocusPainted(false);
-        itemButton2.addActionListener(iHandler);
+        itemButton2.addActionListener(inventoryButton.getAction());
         itemButton2.setActionCommand("item2");
         itemButton2.setText(Game.currentPlayer.getPlayerItems()[1].getName());
         itemButton3 = new JButton();
         itemButton3.setBackground(black);
         itemButton3.setForeground(white);
         itemButton3.setFocusPainted(false);
-        itemButton3.addActionListener(iHandler);
+        itemButton3.addActionListener(inventoryButton.getAction());
         itemButton3.setActionCommand("item3");
         itemButton3.setText(Game.currentPlayer.getPlayerItems()[2].getName());
         itemButton4 = new JButton();
         itemButton4.setBackground(black);
         itemButton4.setForeground(white);
         itemButton4.setFocusPainted(false);
-        itemButton4.addActionListener(iHandler);
+        itemButton4.addActionListener(inventoryButton.getAction());
         itemButton4.setActionCommand("item4");
         itemButton4.setText(Game.currentPlayer.getPlayerItems()[3].getName());
         itemButton5 = new JButton();
         itemButton5.setBackground(black);
         itemButton5.setForeground(white);
         itemButton5.setFocusPainted(false);
-        itemButton5.addActionListener(iHandler);
+        itemButton5.addActionListener(inventoryButton.getAction());
         itemButton5.setActionCommand("item5");
         itemButton5.setText(Game.currentPlayer.getPlayerItems()[4].getName());
 
@@ -212,8 +173,8 @@ public class MyFrame extends JFrame implements KeyListener{
 
         //<editor-fold desc="Main Menu">
         menu = new ImageIcon("Images/MainMenuPicture.png");
-        JLabel jl1= new JLabel();
-        jl1.setSize(xSize,ySize);
+        JLabel jl1 = new JLabel();
+        jl1.setSize(xSize, ySize);
         jl1.setIcon(menu);
         //this.add(jl1);
         //</editor-fold>
@@ -229,7 +190,7 @@ public class MyFrame extends JFrame implements KeyListener{
         //<editor-fold desc="Map">
         map = new ImageIcon("Images/Map1.png");
         JLabel jl = new JLabel();
-        jl.setSize(xSize,ySize);
+        jl.setSize(xSize, ySize);
         jl.setIcon(map);
         this.add(jl);
         //</editor-fold>
@@ -239,18 +200,67 @@ public class MyFrame extends JFrame implements KeyListener{
 
     }
 
+    public void InventoryButtonAction(ActionEvent e) {
+        currentPlayer = Game.currentPlayer;
+
+        String yourChoice = e.getActionCommand();
+
+
+        switch (yourChoice) {
+            case "inventoryButton":
+                if (inventoryButton.isSelected() && currentPlayer.inventoryStatus.equals("close")) {
+
+
+                    inventoryPanel.setVisible(true);
+
+                    currentPlayer.inventoryStatus = "Open";
+
+
+                } else {
+
+                    inventoryPanel.setVisible(false);
+
+                    currentPlayer.inventoryStatus = "close";
+
+
+                }
+
+
+                break;
+            case "item1":
+                currentPlayer.itemUsed(0);
+                break;
+            case "item2":
+                currentPlayer.itemUsed(1);
+                break;
+            case "item3":
+                currentPlayer.itemUsed(2);
+                break;
+            case "item4":
+                currentPlayer.itemUsed(3);
+                break;
+            case "item5":
+                currentPlayer.itemUsed(4);
+                break;
+        }
+    }
+
     //<editor-fold desc="Player Movement">
     @Override
     public void keyTyped(KeyEvent e) {
 
-        switch(e.getKeyChar()) {
-            case 'a': shrek.setLocation(shrek.getX()-15, shrek.getY());
+        switch (e.getKeyChar()) {
+            case 'a':
+                shrek.setLocation(shrek.getX() - 15, shrek.getY());
                 break;
-            case 'w': shrek.setLocation(shrek.getX(), shrek.getY()-15);
+            case 'w':
+                shrek.setLocation(shrek.getX(), shrek.getY() - 15);
                 break;
-            case 's': shrek.setLocation(shrek.getX(), shrek.getY()+15);
+            case 's':
+                shrek.setLocation(shrek.getX(), shrek.getY() + 15);
                 break;
-            case 'd': shrek.setLocation(shrek.getX()+15, shrek.getY());
+            case 'd':
+                shrek.setLocation(shrek.getX() + 15, shrek.getY());
                 break;
 
         }
@@ -260,28 +270,32 @@ public class MyFrame extends JFrame implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
 
-        switch(e.getKeyCode()) {
-            case 37: shrek.setLocation(shrek.getX()-15, shrek.getY());
+        switch (e.getKeyCode()) {
+            case 37:
+                shrek.setLocation(shrek.getX() - 15, shrek.getY());
                 break;
-            case 38: shrek.setLocation(shrek.getX(), shrek.getY()-15);
+            case 38:
+                shrek.setLocation(shrek.getX(), shrek.getY() - 15);
                 break;
-            case 39: shrek.setLocation(shrek.getX()+15, shrek.getY());
+            case 39:
+                shrek.setLocation(shrek.getX() + 15, shrek.getY());
                 break;
-            case 40: shrek.setLocation(shrek.getX(), shrek.getY()+15);
+            case 40:
+                shrek.setLocation(shrek.getX(), shrek.getY() + 15);
                 break;
         }
 
-        if(shrek.getX()== 0){
-            shrek.setLocation(shrek.getX()+15, shrek.getY());
+        if (shrek.getX() == 0) {
+            shrek.setLocation(shrek.getX() + 15, shrek.getY());
         }
-        if(shrek.getY()== 0){
-            shrek.setLocation(shrek.getX(), shrek.getY()+15);
+        if (shrek.getY() == 0) {
+            shrek.setLocation(shrek.getX(), shrek.getY() + 15);
         }
-        if(shrek.getX()== xSize){
-            shrek.setLocation(shrek.getX()-15, shrek.getY());
+        if (shrek.getX() == 1770) {
+            shrek.setLocation(shrek.getX() - 15, shrek.getY());
         }
-        if(shrek.getY()== ySize){
-            shrek.setLocation(shrek.getX(), shrek.getY()-15);
+        if (shrek.getY() == 840) {
+            shrek.setLocation(shrek.getX(), shrek.getY() - 15);
         }
     }
 
