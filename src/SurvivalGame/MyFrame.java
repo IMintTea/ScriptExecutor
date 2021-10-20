@@ -22,10 +22,10 @@ public class MyFrame extends JFrame implements KeyListener {
     // Home screen: 1920, 1080 School screen: 1920, 1080
     //</editor-fold>
 
-    JLabel shrek, InventoryButtonImage2;
-    JProgressBar healthBar;
+    JLabel BigLez;
+    JProgressBar healthBar, staminaBar, manaBar;
     ImageIcon icon, map, youDied, InventoryButtonImage, DamageButtonImage;
-    JPanel inventoryPanel, healthBarPanel;
+    JPanel inventoryPanel, healthBarPanel, staminaBarPanel, manaBarPanel;
     public static JToggleButton inventoryButton;
     JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
 
@@ -54,6 +54,22 @@ public class MyFrame extends JFrame implements KeyListener {
         death.setVisible(false);
         //</editor-fold>
 
+        //<editor-fold desc="Stamina Bar">
+        staminaBarPanel = new JPanel();
+        staminaBarPanel.setBounds(250, 250, 250, 30);
+        staminaBarPanel.setLocation((xSize / 2) - 250 -80, 925);
+        staminaBarPanel.setBackground(BLACK);
+        staminaBarPanel.setForeground(GRAY);
+        this.add(staminaBarPanel);
+
+        staminaBar = new JProgressBar(0, 100);
+        staminaBar.setPreferredSize(new Dimension(500, 20));
+        staminaBar.setValue(Game.getCurrentPlayer().playerHp);
+        staminaBar.setBackground(GRAY);
+        staminaBar.setForeground(YELLOW);
+        staminaBarPanel.add(staminaBar);
+        //</editor-fold>
+
         //<editor-fold desc="Health Bar">
         healthBarPanel = new JPanel();
         healthBarPanel.setBounds(250, 250, 500, 30);
@@ -70,6 +86,22 @@ public class MyFrame extends JFrame implements KeyListener {
         healthBarPanel.add(healthBar);
         //</editor-fold>
 
+        //<editor-fold desc="Mana Bar">
+        manaBarPanel = new JPanel();
+        manaBarPanel.setBounds(250, 250, 250, 30);
+        manaBarPanel.setLocation((xSize / 2) + 80, 925);
+        manaBarPanel.setBackground(BLACK);
+        manaBarPanel.setForeground(GRAY);
+        this.add(manaBarPanel);
+
+        manaBar = new JProgressBar(0, 100);
+        manaBar.setPreferredSize(new Dimension(500, 20));
+        manaBar.setValue(Game.getCurrentPlayer().playerHp);
+        manaBar.setBackground(GRAY);
+        manaBar.setForeground(BLUE);
+        manaBarPanel.add(manaBar);
+        //</editor-fold>
+
         //<editor-fold desc="Damage Button">
         DamageButtonImage = new ImageIcon("Images/DamageButton.png");
         damage = new JButton(DamageButtonImage);
@@ -77,9 +109,9 @@ public class MyFrame extends JFrame implements KeyListener {
         damage.setForeground(white);
         damage.setBackground(black);
         damage.setSize(80, 80);
-        damage.setLocation((xSize / 2) + 250, 970);
+        damage.setLocation((xSize / 2) + 250, 955);
         damage.setVisible(true);
-        this.add(damage);
+        //this.add(damage);
         damage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,7 +136,7 @@ public class MyFrame extends JFrame implements KeyListener {
         inventoryButton.setBackground(white);
         inventoryButton.setForeground(white);
         inventoryButton.setSize(80, 80);
-        inventoryButton.setLocation((xSize / 2) - 330, 970);
+        inventoryButton.setLocation((xSize / 2) - 330, 955);
         inventoryButton.setVisible(true);
         inventoryButton.setFocusPainted(false);
         //inventoryButton.addActionListener(iHandler);
@@ -117,7 +149,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
         inventoryButton.setActionCommand("inventoryButton");
-        this.add(inventoryButton);
+        //this.add(inventoryButton);
         //</editor-fold>
 
         //<editor-fold desc="Inventory Contents">
@@ -173,13 +205,12 @@ public class MyFrame extends JFrame implements KeyListener {
         inventoryPanel.setVisible(false);
         //</editor-fold>
 
-
         //<editor-fold desc="Player Model">
-        icon = new ImageIcon("Images/Shrek.png");
-        shrek = new JLabel();
-        shrek.setBounds(0, 0, 200, 200);
-        shrek.setIcon(icon);
-        //this.add(shrek);
+        icon = new ImageIcon("Images/BigLez.png");
+        BigLez = new JLabel();
+        BigLez.setBounds(0, 0, 130, 300);
+        BigLez.setIcon(icon);
+        this.add(BigLez);
         //</editor-fold>
 
         //<editor-fold desc="Map">
@@ -192,7 +223,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
         this.setVisible(true);
 
-
+        //keep player centered and move zoomed map instead
     }
 
     public void InventoryButtonAction(ActionEvent e) {
@@ -246,16 +277,16 @@ public class MyFrame extends JFrame implements KeyListener {
 
         switch (e.getKeyChar()) {
             case 'a':
-                shrek.setLocation(shrek.getX() - 15, shrek.getY());
+                BigLez.setLocation(BigLez.getX() - 17, BigLez.getY());
                 break;
             case 'w':
-                shrek.setLocation(shrek.getX(), shrek.getY() - 15);
+                BigLez.setLocation(BigLez.getX(), BigLez.getY() - 17);
                 break;
             case 's':
-                shrek.setLocation(shrek.getX(), shrek.getY() + 15);
+                BigLez.setLocation(BigLez.getX(), BigLez.getY() + 17);
                 break;
             case 'd':
-                shrek.setLocation(shrek.getX() + 15, shrek.getY());
+                BigLez.setLocation(BigLez.getX() + 17, BigLez.getY());
                 break;
 
         }
@@ -267,30 +298,30 @@ public class MyFrame extends JFrame implements KeyListener {
 
         switch (e.getKeyCode()) {
             case 37:
-                shrek.setLocation(shrek.getX() - 15, shrek.getY());
+                BigLez.setLocation(BigLez.getX() - 17, BigLez.getY());
                 break;
             case 38:
-                shrek.setLocation(shrek.getX(), shrek.getY() - 15);
+                BigLez.setLocation(BigLez.getX(), BigLez.getY() - 17);
                 break;
             case 39:
-                shrek.setLocation(shrek.getX() + 15, shrek.getY());
+                BigLez.setLocation(BigLez.getX() + 17, BigLez.getY());
                 break;
             case 40:
-                shrek.setLocation(shrek.getX(), shrek.getY() + 15);
+                BigLez.setLocation(BigLez.getX(), BigLez.getY() + 17);
                 break;
         }
 
-        if (shrek.getX() == 0) {
-            shrek.setLocation(shrek.getX() + 15, shrek.getY());
+        if (BigLez.getX() == 0) {
+            BigLez.setLocation(BigLez.getX() + 17, BigLez.getY());
         }
-        if (shrek.getY() == 0) {
-            shrek.setLocation(shrek.getX(), shrek.getY() + 15);
+        if (BigLez.getY() == 0) {
+            BigLez.setLocation(BigLez.getX(), BigLez.getY() + 17);
         }
-        if (shrek.getX() == 1770) {
-            shrek.setLocation(shrek.getX() - 15, shrek.getY());
+        if (BigLez.getX() == 1770) {
+            BigLez.setLocation(BigLez.getX() - 17, BigLez.getY());
         }
-        if (shrek.getY() == 840) {
-            shrek.setLocation(shrek.getX(), shrek.getY() - 15);
+        if (BigLez.getY() == 840) {
+            BigLez.setLocation(BigLez.getX(), BigLez.getY() - 17);
         }
     }
 
