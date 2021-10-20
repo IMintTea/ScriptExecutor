@@ -22,9 +22,9 @@ public class MyFrame extends JFrame implements KeyListener {
     // Home screen: 1920, 1080 School screen: 1920, 1080
     //</editor-fold>
 
-    JLabel shrek;
+    JLabel shrek, InventoryButtonImage2;
     JProgressBar healthBar;
-    ImageIcon icon, map, menu, youDied, InventoryButtonImage;
+    ImageIcon icon, map, youDied, InventoryButtonImage, DamageButtonImage;
     JPanel inventoryPanel, healthBarPanel;
     public static JToggleButton inventoryButton;
     JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
@@ -71,7 +71,9 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Damage Button">
-        damage = new JButton("DMG");
+        DamageButtonImage = new ImageIcon("Images/DamageButton.png");
+        damage = new JButton(DamageButtonImage);
+        damage.setOpaque(false);
         damage.setForeground(white);
         damage.setBackground(black);
         damage.setSize(80, 80);
@@ -96,11 +98,11 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Inventory Button">
-        InventoryButtonImage = new ImageIcon("Images/InventoryButton.jfif");
+        InventoryButtonImage = new ImageIcon("Images/InventoryButton.png");
         inventoryButton = new JToggleButton(InventoryButtonImage);
-        inventoryButton.setBackground(null);
-        inventoryButton.setForeground(null);
-        inventoryButton.setBorder(null);
+        inventoryButton.setOpaque(false);
+        inventoryButton.setBackground(white);
+        inventoryButton.setForeground(white);
         inventoryButton.setSize(80, 80);
         inventoryButton.setLocation((xSize / 2) - 330, 970);
         inventoryButton.setVisible(true);
@@ -171,20 +173,13 @@ public class MyFrame extends JFrame implements KeyListener {
         inventoryPanel.setVisible(false);
         //</editor-fold>
 
-        //<editor-fold desc="Main Menu">
-        menu = new ImageIcon("Images/MainMenuPicture.png");
-        JLabel jl1 = new JLabel();
-        jl1.setSize(xSize, ySize);
-        jl1.setIcon(menu);
-        //this.add(jl1);
-        //</editor-fold>
 
         //<editor-fold desc="Player Model">
         icon = new ImageIcon("Images/Shrek.png");
         shrek = new JLabel();
         shrek.setBounds(0, 0, 200, 200);
         shrek.setIcon(icon);
-        this.add(shrek);
+        //this.add(shrek);
         //</editor-fold>
 
         //<editor-fold desc="Map">
