@@ -1,5 +1,7 @@
 package SurvivalGame;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.awt.*;
 
 import java.awt.event.ActionEvent;
@@ -19,10 +21,11 @@ public class MyFrame extends JFrame implements KeyListener {
     Toolkit tk = Toolkit.getDefaultToolkit();
     int xSize = ((int) tk.getScreenSize().getWidth());
     int ySize = ((int) tk.getScreenSize().getHeight());
+
     // Home screen: 1920, 1080 School screen: 1920, 1080
     //</editor-fold>
 
-    JLabel BigLez;
+    JLabel BigLez, Map;
     JProgressBar healthBar, staminaBar, manaBar;
     ImageIcon icon, map, youDied, InventoryButtonImage, DamageButtonImage;
     JPanel inventoryPanel, healthBarPanel, staminaBarPanel, manaBarPanel;
@@ -210,17 +213,18 @@ public class MyFrame extends JFrame implements KeyListener {
         BigLez = new JLabel();
         BigLez.setBounds(0, 0, 130, 300);
         BigLez.setIcon(icon);
+        BigLez.setLocation(xSize/2,ySize/2);
         this.add(BigLez);
         //</editor-fold>
 
         //<editor-fold desc="Map">
         map = new ImageIcon("Images/Map1.png");
-        JLabel jl = new JLabel();
-        jl.setSize(xSize, ySize);
-        jl.setIcon(map);
-        this.add(jl);
+        Map = new JLabel();
+        Map.setSize(xSize, ySize);
+        Map.setIcon(map);
+        Map.setBounds(0, 0, 1920, 1080);
+        this.add(Map);
         //</editor-fold>
-
         this.setVisible(true);
 
         //keep player centered and move zoomed map instead
@@ -297,17 +301,17 @@ public class MyFrame extends JFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         switch (e.getKeyCode()) {
-            case 37:
-                BigLez.setLocation(BigLez.getX() - 17, BigLez.getY());
-                break;
-            case 38:
-                BigLez.setLocation(BigLez.getX(), BigLez.getY() - 17);
-                break;
             case 39:
-                BigLez.setLocation(BigLez.getX() + 17, BigLez.getY());
+                Map.setLocation(Map.getX() - 17, Map.getY());
                 break;
             case 40:
-                BigLez.setLocation(BigLez.getX(), BigLez.getY() + 17);
+                Map.setLocation(Map.getX(), Map.getY() - 17);
+                break;
+            case 37:
+                Map.setLocation(Map.getX() + 17, Map.getY());
+                break;
+            case 38:
+                Map.setLocation(Map.getX(), Map.getY() + 17);
                 break;
         }
 
