@@ -36,6 +36,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
     Player currentPlayer;
 
+    // https://www.pinterest.co.uk/0heape4vu8xhohi/2d-tile-map/
 
     MyFrame() {
 
@@ -114,7 +115,7 @@ public class MyFrame extends JFrame implements KeyListener {
         damage.setSize(80, 80);
         damage.setLocation((xSize / 2) + 250, 955);
         damage.setVisible(true);
-        //this.add(damage);
+        this.add(damage);
         damage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -142,7 +143,7 @@ public class MyFrame extends JFrame implements KeyListener {
         inventoryButton.setLocation((xSize / 2) - 330, 955);
         inventoryButton.setVisible(true);
         inventoryButton.setFocusPainted(false);
-        //inventoryButton.addActionListener(iHandler);
+//        inventoryButton.addActionListener(iHandler);
         inventoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -152,7 +153,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
         inventoryButton.setActionCommand("inventoryButton");
-        //this.add(inventoryButton);
+        this.add(inventoryButton);
         //</editor-fold>
 
         //<editor-fold desc="Inventory Contents">
@@ -218,16 +219,18 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Map">
-        map = new ImageIcon("Images/Map1.png");
+        map = new ImageIcon("Images/Map1.jpg");
         Map = new JLabel();
-        Map.setSize(xSize, ySize);
+        Map.setSize(4000,4000);
+        Map.setPreferredSize(new Dimension(5000,5000));
         Map.setIcon(map);
         Map.setBounds(0, 0, 1920, 1080);
+
         this.add(Map);
         //</editor-fold>
         this.setVisible(true);
 
-        //keep player centered and move zoomed map instead
+
     }
 
     public void InventoryButtonAction(ActionEvent e) {
