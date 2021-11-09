@@ -115,7 +115,7 @@ public class MyFrame extends JFrame implements KeyListener {
         damage.setSize(80, 80);
         damage.setLocation((xSize / 2) + 250, 955);
         damage.setVisible(true);
-        this.add(damage);
+        //this.add(damage);
         damage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -153,7 +153,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
         inventoryButton.setActionCommand("inventoryButton");
-        this.add(inventoryButton);
+        //this.add(inventoryButton);
         //</editor-fold>
 
         //<editor-fold desc="Inventory Contents">
@@ -219,13 +219,16 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Map">
-        map = new ImageIcon("Images/Map1.jpg");
+        map = new ImageIcon("Images/Map.jfif");
         Map = new JLabel();
-        Map.setSize(4000,4000);
-        Map.setPreferredSize(new Dimension(5000,5000));
         Map.setIcon(map);
         Map.setBounds(0, 0, 1920, 1080);
-
+        Map.setSize(1000,1000);
+        Map.setPreferredSize(new Dimension(1000,1000));
+        Map.setBounds(0,0,1000,1000);
+        Map.
+        Map.setLocation(0,0);
+        // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKULiPgDxSn08wYLVRS2NNvkeQ2-pnBnvZFdKD5B7rba5b8RAclQs0rXlR-FR4zS6Heoo&usqp=CAU
         this.add(Map);
         //</editor-fold>
         this.setVisible(true);
