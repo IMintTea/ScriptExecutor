@@ -226,7 +226,7 @@ public class MyFrame extends JFrame implements KeyListener {
         Map.setSize(1000,1000);
         Map.setPreferredSize(new Dimension(1000,1000));
         Map.setBounds(0,0,1000,1000);
-        Map.
+
         Map.setLocation(0,0);
         // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKULiPgDxSn08wYLVRS2NNvkeQ2-pnBnvZFdKD5B7rba5b8RAclQs0rXlR-FR4zS6Heoo&usqp=CAU
         this.add(Map);
@@ -282,6 +282,8 @@ public class MyFrame extends JFrame implements KeyListener {
     }
 
     //<editor-fold desc="Player Movement">
+
+    // do vertical movement.
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -298,7 +300,6 @@ public class MyFrame extends JFrame implements KeyListener {
             case 'd':
                 BigLez.setLocation(BigLez.getX() + 17, BigLez.getY());
                 break;
-
         }
 
     }
