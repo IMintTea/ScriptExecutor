@@ -24,7 +24,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
     // Home screen: 1920, 1080 School screen: 1920, 1080
     //</editor-fold>
-
+    Boolean dead = false;
     JLabel BigLez, Map;
     JProgressBar healthBar, staminaBar, manaBar;
     ImageIcon icon, map, youDied, InventoryButtonImage, DamageButtonImage;
@@ -37,6 +37,7 @@ public class MyFrame extends JFrame implements KeyListener {
     Player currentPlayer;
 
     // https://www.pinterest.co.uk/0heape4vu8xhohi/2d-tile-map/
+
 
     MyFrame() {
 
@@ -55,7 +56,7 @@ public class MyFrame extends JFrame implements KeyListener {
         death.setLocation((xSize / 2) - 206, 300);
         death.setIcon(youDied);
         this.add(death);
-        death.setVisible(false);
+        death.setVisible(dead);
         //</editor-fold>
 
         //<editor-fold desc="Stamina Bar">
@@ -115,15 +116,15 @@ public class MyFrame extends JFrame implements KeyListener {
         damage.setSize(80, 80);
         damage.setLocation((xSize / 2) + 250, 955);
         damage.setVisible(true);
-        //this.add(damage);
+        this.add(damage);
         damage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int damageAmount = -10;
                 healthBar.setValue((Game.getCurrentPlayer().playerHp) + damageAmount);
                 (Game.getCurrentPlayer().playerHp) = (Game.getCurrentPlayer().playerHp) + damageAmount;
-                System.out.println(Game.getCurrentPlayer().playerHp);
 
+                System.out.println(Game.getCurrentPlayer().playerHp);
             }
         });
         if (Game.getCurrentPlayer().playerHp <= 0) {
@@ -153,7 +154,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
         inventoryButton.setActionCommand("inventoryButton");
-        //this.add(inventoryButton);
+        this.add(inventoryButton);
         //</editor-fold>
 
         //<editor-fold desc="Inventory Contents">
@@ -235,6 +236,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
     }
+
 
     public void InventoryButtonAction(ActionEvent e) {
         currentPlayer = Game.currentPlayer;
