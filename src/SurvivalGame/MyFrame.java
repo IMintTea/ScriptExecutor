@@ -220,14 +220,10 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Map">
-        map = new ImageIcon("Images/Map.jfif");
+        map = new ImageIcon("Images/Map.png");
         Map = new JLabel();
         Map.setIcon(map);
         Map.setBounds(0, 0, 1920, 1080);
-        Map.setSize(1000,1000);
-        Map.setPreferredSize(new Dimension(1000,1000));
-        Map.setBounds(0,0,1000,1000);
-
         Map.setLocation(0,0);
         // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKULiPgDxSn08wYLVRS2NNvkeQ2-pnBnvZFdKD5B7rba5b8RAclQs0rXlR-FR4zS6Heoo&usqp=CAU
         this.add(Map);

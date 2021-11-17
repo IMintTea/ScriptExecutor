@@ -1,8 +1,12 @@
 package Launcher;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class SignIn extends javax.swing.JFrame{
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -45,6 +49,16 @@ public class SignIn extends javax.swing.JFrame{
         forgotPasswordBtn.setBackground(new Color(255, 255, 255));
         forgotPasswordBtn.setForeground(new Color(0,0,0));
         forgotPasswordBtn.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+
+        picturePanel.setLayout(new FlowLayout());
+        try {
+            BufferedImage myPicture = ImageIO.read(new File(("Images/BigLez.png")));
+            JLabel launcherImageLabel = new JLabel(new ImageIcon(myPicture));
+            picturePanel.add(launcherImageLabel);
+            launcherImageLabel.setPreferredSize(new Dimension(600,700));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         launchGameBtn.setVisible(false);
