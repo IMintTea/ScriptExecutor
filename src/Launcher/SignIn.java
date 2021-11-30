@@ -23,6 +23,7 @@ public class SignIn extends javax.swing.JFrame{
     private JLabel enterEmailLabel;
     private JLabel enterPasswordLabel;
     private JPanel picturePanel;
+    private JPanel LogoPicturePanel;
 
     public static JFrame frame = new JFrame("SurvivalGame Launcher");
 
@@ -37,29 +38,38 @@ public class SignIn extends javax.swing.JFrame{
         signInPanel.setForeground(new Color(255, 255, 255));
 
         emailTf.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
+        emailTf.setBackground(new Color(92, 91, 105, 255));
         passwordTf.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
-        enterEmailLabel.setForeground(new Color(0,0,0));
-        enterPasswordLabel.setForeground(new Color(0,0,0));
-        signInBtn.setBackground(new Color(255, 255, 255));
-        signInBtn.setForeground(new Color(0,0,0));
-        signInBtn.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
-        signUpBtn.setBackground(new Color(255, 255, 255));
-        signUpBtn.setForeground(new Color(0,0,0));
-        signUpBtn.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
-        forgotPasswordBtn.setBackground(new Color(255, 255, 255));
-        forgotPasswordBtn.setForeground(new Color(0,0,0));
-        forgotPasswordBtn.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+        passwordTf.setBackground(new Color(92, 91, 105));
+        enterEmailLabel.setForeground(new Color(255, 255, 255));
+        enterPasswordLabel.setForeground(new Color(255, 255, 255));
+        signInBtn.setBackground(new Color(92, 91, 105));
+        signInBtn.setForeground(new Color(255, 255, 255));
+        signInBtn.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
+        signUpBtn.setBackground(new Color(92, 91, 105));;
+        signUpBtn.setForeground(new Color(255, 255, 255));
+        signUpBtn.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
+        forgotPasswordBtn.setBackground(new Color(92, 91, 105));
+        forgotPasswordBtn.setForeground(new Color(255, 255, 255));
+        forgotPasswordBtn.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
 
         picturePanel.setLayout(new FlowLayout());
         try {
-            BufferedImage myPicture = ImageIO.read(new File(("Images/BigLez.png")));
+            BufferedImage myPicture = ImageIO.read(new File(("Images/Launcher/LauncherPanelPicture.jpg")));
             JLabel launcherImageLabel = new JLabel(new ImageIcon(myPicture));
             picturePanel.add(launcherImageLabel);
-            launcherImageLabel.setPreferredSize(new Dimension(600,700));
+            launcherImageLabel.setPreferredSize(new Dimension(picturePanel.getWidth(), picturePanel.getHeight()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        LogoPicturePanel.setLayout(new FlowLayout());
+        try {
+            BufferedImage myLogoPicture = ImageIO.read(new File(("Images/Launcher/Logo.png")));
+            JLabel launcherLogoLabel = new JLabel(new ImageIcon(myLogoPicture));
+            LogoPicturePanel.add(launcherLogoLabel);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
         launchGameBtn.setVisible(false);
     }

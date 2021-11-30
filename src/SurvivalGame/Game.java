@@ -15,9 +15,9 @@ public class Game {
 //        Music musicObject = new Music();
 //        musicObject.playMusic(filepath);
 //        InventoryHandler iHandler = new InventoryHandler();
-//        SignIn Launcher = new SignIn();
+        SignIn Launcher = new SignIn();
 
-        MyFrame frame = new MyFrame(); //runs frame in MyFrame
+//        MyFrame frame = new MyFrame(); //runs frame in MyFrame
 
 
     }
