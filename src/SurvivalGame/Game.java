@@ -2,6 +2,7 @@ package SurvivalGame;
 
 
 import Launcher.SignIn;
+import Launcher.SignUp;
 
 public class Game {
 
@@ -15,8 +16,8 @@ public class Game {
 //        Music musicObject = new Music();
 //        musicObject.playMusic(filepath);
 //        InventoryHandler iHandler = new InventoryHandler();
-        SignIn Launcher = new SignIn();
-
+        SignIn LauncherSignIn = new SignIn();
+//        SignUp LauncherSignUp = new SignUp();
 //        MyFrame frame = new MyFrame(); //runs frame in MyFrame
 
 
