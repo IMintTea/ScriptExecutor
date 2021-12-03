@@ -3,6 +3,8 @@ package Launcher;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +41,7 @@ public class SignUp extends javax.swing.JFrame{
         emailTf.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
         emailTf.setBackground(new Color(92, 91, 105, 255));
         emailTf.setForeground(new Color(255, 255, 255));
+
         accountNameTf.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
         accountNameTf.setBackground(new Color(92, 91, 105, 255));
         accountNameTf.setForeground(new Color(255, 255, 255));
@@ -57,9 +60,50 @@ public class SignUp extends javax.swing.JFrame{
         backBtn.setBackground(new Color(92, 91, 105));
         backBtn.setForeground(new Color(255, 255, 255));
         backBtn.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
+        backBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SignIn().setLocation(SignUp.this.getLocation());
+                SignUp.this.dispose();
+            }
+        });
+
         registerBtn.setBackground(new Color(92, 91, 105));;
         registerBtn.setForeground(new Color(255, 255, 255));
         registerBtn.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
+        registerBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (accountNameTf.getText().length() <= 8 && !accountNameTf.getText().matches(".*\\d.*"))  {
+                    System.out.println(accountNameTf.getText());
+                    System.out.println("Valid Name Bro");
+                }else{
+                    System.out.println("Account name does not meet the criteria!");
+                    System.out.println("Make sure the account name is at least 8 characters long and does not contain numbers!");
+                }
+
+                if (emailTf.getText().contains("@") && (emailTf.getText().contains(".com"))){
+                    System.out.println(emailTf.getText());
+                    System.out.println("Valid Email Bro");
+                }else{
+                    System.out.println("Error this is not a valid email!");
+                }
+
+                if (passwordTf.getPassword().length <= 8){
+                    System.out.println(passwordTf.getPassword());
+                    System.out.println("Valid Bro");
+                }else{
+                    System.out.println("Password does not meet the minimum length");
+                }
+
+                if (confirmPasswordTf.getPassword().equals(passwordTf.getPassword())){
+                    System.out.println("Passwords match Bro");
+                }else{
+                    System.out.println("Passwords do not match!");
+                }
+            }
+        });
 
         picturePanel.setLayout(new FlowLayout());
         try {

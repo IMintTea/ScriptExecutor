@@ -39,7 +39,7 @@ public class MyFrame extends JFrame implements KeyListener {
     // https://www.pinterest.co.uk/0heape4vu8xhohi/2d-tile-map/
 
 
-    MyFrame() {
+    public MyFrame() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);

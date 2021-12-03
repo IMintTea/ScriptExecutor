@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="signInPanel" layout-manager="GridLayoutManager" row-count="20" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="982" height="490"/>
+      <xy x="20" y="20" width="982" height="495"/>
     </constraints>
     <properties>
       <background color="-14209470"/>
@@ -103,19 +103,7 @@
         </constraints>
         <properties/>
         <border type="none"/>
-        <children>
-          <component id="f6c64" class="javax.swing.JButton" binding="launchGameBtn">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <horizontalAlignment value="0"/>
-              <horizontalTextPosition value="0"/>
-              <text value="Launch Game"/>
-              <verticalAlignment value="0"/>
-            </properties>
-          </component>
-        </children>
+        <children/>
       </grid>
       <hspacer id="d4f5d">
         <constraints>
@@ -197,6 +185,17 @@
           <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
+      <component id="f6c64" class="javax.swing.JButton" binding="launchGameBtn">
+        <constraints>
+          <grid row="18" column="1" row-span="2" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Launch Game"/>
+          <verticalAlignment value="0"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
