@@ -102,5 +102,4 @@ public class SignIn extends javax.swing.JFrame{
         });
     }
 
-
 }

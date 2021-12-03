@@ -1,5 +1,7 @@
 package Launcher;
 
+import SurvivalGame.Repository;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +33,7 @@ public class SignUp extends javax.swing.JFrame{
     public SignUp(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(new Dimension(1070,700));
-        this.setLocation(xSize/4-100,ySize/4-100);
+        this.setLocation(xSize/2,ySize/2);
         this.add(signUpPanel);
         this.setVisible(true);
 
@@ -74,10 +76,14 @@ public class SignUp extends javax.swing.JFrame{
         registerBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Boolean validName = false;
+                Boolean validEmail = false;
+                Boolean validPassword = false;
 
-                if (accountNameTf.getText().length() <= 8 && !accountNameTf.getText().matches(".*\\d.*"))  {
+                if (accountNameTf.getText().length() >= 8 && !accountNameTf.getText().matches(".*\\d.*"))  {
                     System.out.println(accountNameTf.getText());
                     System.out.println("Valid Name Bro");
+                    validName = true;
                 }else{
                     System.out.println("Account name does not meet the criteria!");
                     System.out.println("Make sure the account name is at least 8 characters long and does not contain numbers!");
@@ -86,21 +92,31 @@ public class SignUp extends javax.swing.JFrame{
                 if (emailTf.getText().contains("@") && (emailTf.getText().contains(".com"))){
                     System.out.println(emailTf.getText());
                     System.out.println("Valid Email Bro");
+                    validEmail = true;
                 }else{
-                    System.out.println("Error this is not a valid email!");
+                    System.out.println("Email not Valid!");
                 }
 
-                if (passwordTf.getPassword().length <= 8){
+                if (passwordTf.getPassword().length >= 8){
                     System.out.println(passwordTf.getPassword());
                     System.out.println("Valid Bro");
+                    validPassword = true;
                 }else{
                     System.out.println("Password does not meet the minimum length");
                 }
 
-                if (confirmPasswordTf.getPassword().equals(passwordTf.getPassword())){
+                String password = new String(passwordTf.getPassword());
+                String confirmPassword = new String(confirmPasswordTf.getPassword());
+                if (password.equals(confirmPassword)){
                     System.out.println("Passwords match Bro");
                 }else{
                     System.out.println("Passwords do not match!");
+                }
+
+                if (validName == true && validEmail == true && validPassword == true) {
+                    //enter details into database.
+                    Repository.inputSignUpDetails(accountNameTf.getText(),emailTf.getText(),password);
+
                 }
             }
         });
@@ -121,6 +137,7 @@ public class SignUp extends javax.swing.JFrame{
             BufferedImage myLogoPicture = ImageIO.read(new File(("Images/Launcher/Logo.png")));
             JLabel launcherLogoLabel = new JLabel(new ImageIcon(myLogoPicture));
             LogoPicturePanel.add(launcherLogoLabel);
+            LogoPicturePanel.setSize(launcherLogoLabel.getSize());
             launcherLogoLabel.revalidate();
         }catch (IOException e){
             e.printStackTrace();
