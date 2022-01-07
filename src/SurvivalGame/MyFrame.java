@@ -116,7 +116,7 @@ public class MyFrame extends JFrame implements KeyListener {
         damage.setSize(80, 80);
         damage.setLocation((xSize / 2) + 250, 955);
         damage.setVisible(true);
-        this.add(damage);
+        //this.add(damage);
         damage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -154,7 +154,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
         inventoryButton.setActionCommand("inventoryButton");
-        this.add(inventoryButton);
+        //*this.add(inventoryButton);
         //</editor-fold>
 
         //<editor-fold desc="Inventory Contents">

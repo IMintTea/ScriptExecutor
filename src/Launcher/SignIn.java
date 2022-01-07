@@ -92,7 +92,7 @@ public class SignIn extends javax.swing.JFrame{
             e.printStackTrace();
         }
 
-        launchGameBtn.setVisible(false);
+        launchGameBtn.setVisible(true);
         launchGameBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

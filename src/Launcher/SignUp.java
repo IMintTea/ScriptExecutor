@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
 public class SignUp extends javax.swing.JFrame{
     Toolkit tk = Toolkit.getDefaultToolkit();
     int xSize = ((int) tk.getScreenSize().getWidth());
@@ -80,7 +81,7 @@ public class SignUp extends javax.swing.JFrame{
                 Boolean validEmail = false;
                 Boolean validPassword = false;
 
-                if (accountNameTf.getText().length() >= 8 && !accountNameTf.getText().matches(".*\\d.*"))  {
+                if (accountNameTf.getText().length() >= 4 && !accountNameTf.getText().matches(".*\\d.*"))  {
                     System.out.println(accountNameTf.getText());
                     System.out.println("Valid Name Bro");
                     validName = true;
@@ -88,7 +89,7 @@ public class SignUp extends javax.swing.JFrame{
                     System.out.println("Account name does not meet the criteria!");
                     System.out.println("Make sure the account name is at least 8 characters long and does not contain numbers!");
                 }
-
+                // use a text file of the .whatever
                 if (emailTf.getText().contains("@") && (emailTf.getText().contains(".com"))){
                     System.out.println(emailTf.getText());
                     System.out.println("Valid Email Bro");
@@ -114,7 +115,7 @@ public class SignUp extends javax.swing.JFrame{
                 }
 
                 if (validName == true && validEmail == true && validPassword == true) {
-                    //enter details into database.
+                    //enter details into database. Apache email verify
                     Repository.inputSignUpDetails(accountNameTf.getText(),emailTf.getText(),password);
 
                 }
