@@ -83,7 +83,7 @@ public class SignUp extends javax.swing.JFrame{
 
                 if (accountNameTf.getText().length() >= 4 && !accountNameTf.getText().matches(".*\\d.*"))  {
                     System.out.println(accountNameTf.getText());
-                    System.out.println("Valid Name Bro");
+                    System.out.println("Valid Name");
                     validName = true;
                 }else{
                     System.out.println("Account name does not meet the criteria!");
@@ -92,7 +92,7 @@ public class SignUp extends javax.swing.JFrame{
                 // use a text file of the .whatever
                 if (emailTf.getText().contains("@") && (emailTf.getText().contains(".com"))){
                     System.out.println(emailTf.getText());
-                    System.out.println("Valid Email Bro");
+                    System.out.println("Valid Email");
                     validEmail = true;
                 }else{
                     System.out.println("Email not Valid!");
@@ -100,7 +100,7 @@ public class SignUp extends javax.swing.JFrame{
 
                 if (passwordTf.getPassword().length >= 8){
                     System.out.println(passwordTf.getPassword());
-                    System.out.println("Valid Bro");
+                    System.out.println("Valid Password");
                     validPassword = true;
                 }else{
                     System.out.println("Password does not meet the minimum length");
@@ -109,7 +109,7 @@ public class SignUp extends javax.swing.JFrame{
                 String password = new String(passwordTf.getPassword());
                 String confirmPassword = new String(confirmPasswordTf.getPassword());
                 if (password.equals(confirmPassword)){
-                    System.out.println("Passwords match Bro");
+                    System.out.println("Passwords match");
                 }else{
                     System.out.println("Passwords do not match!");
                 }
