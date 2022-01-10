@@ -56,6 +56,13 @@ public class SignIn extends javax.swing.JFrame{
         signInBtn.setBackground(new Color(92, 91, 105));
         signInBtn.setForeground(new Color(255, 255, 255));
         signInBtn.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
+        signInBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Launcher().setLocation(SignIn.this.getLocation());
+                SignIn.this.dispose();
+            }
+        });
 
         signUpBtn.setBackground(new Color(92, 91, 105));;
         signUpBtn.setForeground(new Color(255, 255, 255));
