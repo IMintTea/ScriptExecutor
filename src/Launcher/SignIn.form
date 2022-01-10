@@ -185,17 +185,6 @@
           <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="f6c64" class="javax.swing.JButton" binding="launchGameBtn">
-        <constraints>
-          <grid row="18" column="1" row-span="2" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <horizontalAlignment value="0"/>
-          <horizontalTextPosition value="0"/>
-          <text value="Launch Game"/>
-          <verticalAlignment value="0"/>
-        </properties>
-      </component>
     </children>
   </grid>
 </form>

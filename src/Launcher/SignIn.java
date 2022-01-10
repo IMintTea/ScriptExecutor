@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import Launcher.SignUp;
+import SurvivalGame.Repository;
 
 public class SignIn extends javax.swing.JFrame{
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -25,7 +26,6 @@ public class SignIn extends javax.swing.JFrame{
     private JButton signInBtn;
     private JButton signUpBtn;
     private JButton forgotPasswordBtn;
-    private JButton launchGameBtn;
     private JLabel enterEmailLabel;
     private JLabel enterPasswordLabel;
     private JPanel picturePanel;
@@ -99,14 +99,10 @@ public class SignIn extends javax.swing.JFrame{
             e.printStackTrace();
         }
 
-        launchGameBtn.setVisible(true);
-        launchGameBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new MyFrame();
-                SignIn.this.dispose();
-            }
-        });
+        //Passes text field input to the Repository.
+        String password = new String(passwordTf.getPassword());
+        Repository.login(emailTf.getText(), password);
+
     }
 
 }

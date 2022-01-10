@@ -1,7 +1,14 @@
 package Launcher;
 
+import SurvivalGame.MyFrame;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import static java.awt.Color.black;
+import static java.awt.Color.white;
 
 public class Launcher extends javax.swing.JFrame{
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -11,7 +18,8 @@ public class Launcher extends javax.swing.JFrame{
     private JPanel launcherPanel;
     private JPanel buttonPanel;
     private JLabel backgroundJl;
-    private ImageIcon backgroundII;
+    private JButton playBtn;
+    private ImageIcon backgroundII, playII;
 
 
 
@@ -27,6 +35,13 @@ public class Launcher extends javax.swing.JFrame{
         launcherPanel.setForeground(new Color(255, 255, 255));
 
 
+        playBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MyFrame();
+                Launcher.this.dispose();
+            }
+        });
 
 
 
@@ -37,6 +52,11 @@ public class Launcher extends javax.swing.JFrame{
         backgroundJl = new JLabel();
         backgroundJl.setIcon(backgroundII);
         backgroundJl.setLocation(0,0);
+
+        playII = new ImageIcon("Images/Launcher/image.png");
+        playBtn = new JButton(playII);
+        playBtn.setOpaque(false);
+        playBtn.setBorder(BorderFactory.createLineBorder(new Color(39,46,66)));
 
     }
 }

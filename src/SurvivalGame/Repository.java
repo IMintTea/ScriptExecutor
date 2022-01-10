@@ -38,5 +38,20 @@ public class Repository {
 
     }
 
+    public static void login(String Email, String Password){
+
+        try {
+            Connection con = getConnection();
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String sql = "SELECT * FROM LoginTbl WHERE Email = '" + Email + "' AND password ='" + Password + "'";
+            stmt.executeQuery(sql);
+
+            System.out.println(Email + Password);
+        }catch (Exception e) {
+            System.out.println("Error in the repository: " + e);
+        }
+
+    }
+
 
 }
