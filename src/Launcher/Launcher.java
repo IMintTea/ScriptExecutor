@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import Launcher.SignIn;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 
@@ -19,6 +19,7 @@ public class Launcher extends javax.swing.JFrame{
     private JPanel buttonPanel;
     private JLabel backgroundJl;
     private JButton playBtn;
+    private JButton backBtn;
     private ImageIcon backgroundII, playII;
 
 
@@ -42,7 +43,13 @@ public class Launcher extends javax.swing.JFrame{
                 Launcher.this.dispose();
             }
         });
-
+        backBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SignIn().setLocation(Launcher.this.getLocation());
+                Launcher.this.dispose();
+            }
+        });
 
 
     }

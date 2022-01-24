@@ -36,7 +36,7 @@ public class SignIn extends javax.swing.JFrame{
     public SignIn(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(new Dimension(1070,700));
-        this.setLocation(xSize/4-100,ySize/4-100);
+        this.setLocation(xSize/2-this.getSize().width/2,ySize/2-this.getSize().height/2);
         this.add(signInPanel);
         this.setVisible(true);
 

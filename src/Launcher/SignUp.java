@@ -65,9 +65,8 @@ public class SignUp extends javax.swing.JFrame{
         backBtn.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
         backBtn.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new SignIn().setLocation(SignUp.this.getLocation());
-                SignUp.this.dispose();
+            public void actionPerformed(ActionEvent evt) {
+                backBtn(evt);
             }
         });
 
@@ -144,6 +143,10 @@ public class SignUp extends javax.swing.JFrame{
             e.printStackTrace();
         }
 
+    }
+    public void backBtn(ActionEvent evt){
+        SignUp.this.dispose();
+        new SignIn().setLocation(SignUp.this.getLocation());
     }
 
 
