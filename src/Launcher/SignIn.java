@@ -12,6 +12,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import Launcher.SignUp;
 import SurvivalGame.Repository;
 
@@ -59,8 +62,18 @@ public class SignIn extends javax.swing.JFrame{
         signInBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Launcher().setLocation(SignIn.this.getLocation());
-                SignIn.this.dispose();
+                String password = new String(passwordTf.getPassword());
+                ResultSet rs = Repository.login(emailTf.getText(), password);
+                try {
+                    if (rs.next()){
+                        new Launcher().setLocation(SignIn.this.getLocation());
+                        SignIn.this.dispose();
+                    }else{
+                        System.out.println("Login details are incorrect!");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 

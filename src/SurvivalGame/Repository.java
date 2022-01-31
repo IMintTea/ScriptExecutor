@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import Launcher.Launcher;
+import Launcher.SignIn;
 
 public class Repository {
 
@@ -26,7 +28,7 @@ public class Repository {
             Connection con = getConnection();
 
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String sql = "INSERT INTO Login (Account_Name, Email, Password) VALUES ('" + Name +"','" + Email + "','" + Password + "')";
+            String sql = "INSERT INTO LoginTbl (Account_Name, Email, Password) VALUES ('" + Name +"','" + Email + "','" + Password + "')";
             stmt.executeUpdate(sql);
 
             stmt.close();
@@ -38,19 +40,22 @@ public class Repository {
 
     }
 
-    public static void login(String Email, String Password){
-
+    public static ResultSet login(String Email, String Password){
+        ResultSet rs;
         try {
             Connection con = getConnection();
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String sql = "SELECT * FROM LoginTbl WHERE Email = '" + Email + "' AND password ='" + Password + "'";
-            stmt.executeQuery(sql);
+            rs = stmt.executeQuery(sql);
 
-            System.out.println(Email + Password);
+
+            rs.close();
+            con.close();
+            return rs;
         }catch (Exception e) {
             System.out.println("Error in the repository: " + e);
         }
-
+        return null;
     }
 
 
