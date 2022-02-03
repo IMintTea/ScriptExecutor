@@ -215,16 +215,16 @@ public class MyFrame extends JFrame implements KeyListener {
         BigLez = new JLabel();
         BigLez.setBounds(0, 0, 130, 300);
         BigLez.setIcon(icon);
-        BigLez.setLocation(xSize/2,ySize/2);
+        BigLez.setLocation(xSize/2-this.getSize().width/2-(BigLez.getWidth()/2),ySize/2-this.getSize().height/2-(BigLez.getHeight()/2));
         this.add(BigLez);
         //</editor-fold>
 
         //<editor-fold desc="Map">
-        map = new ImageIcon("Images/Map.png");
+        map = new ImageIcon("Images/Map1.png");
         Map = new JLabel();
         Map.setIcon(map);
-        Map.setBounds(0, 0, 1920, 1080);
-        Map.setLocation(0,0);
+        Map.setBounds(0, 0, map.getIconWidth(), map.getIconHeight());
+        Map.setLocation(BigLez.getLocation());
         // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKULiPgDxSn08wYLVRS2NNvkeQ2-pnBnvZFdKD5B7rba5b8RAclQs0rXlR-FR4zS6Heoo&usqp=CAU
         this.add(Map);
         //</editor-fold>

@@ -48,13 +48,14 @@ public class Repository {
             String sql = "SELECT * FROM LoginTbl WHERE Email = '" + Email + "' AND password ='" + Password + "'";
             rs = stmt.executeQuery(sql);
 
-
             rs.close();
             con.close();
             return rs;
+
         }catch (Exception e) {
             System.out.println("Error in the repository: " + e);
         }
+
         return null;
     }
 
