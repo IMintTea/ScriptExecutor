@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import javax.swing.*;
@@ -31,6 +32,13 @@ public class MyFrame extends JFrame implements KeyListener {
     JPanel inventoryPanel, healthBarPanel, staminaBarPanel, manaBarPanel;
     public static JToggleButton inventoryButton;
     JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
+
+    public class Entity{
+        public BufferedImage up1, up2, up3, up4, down1, down2, down3, down4, left1, left2, left3, left4, right1, right2, right3, right4;
+        public String Direction;
+
+    }
+
 
 //    InventoryHandler iHandler = new InventoryHandler();
 
@@ -213,7 +221,7 @@ public class MyFrame extends JFrame implements KeyListener {
         //<editor-fold desc="Player Model">
         icon = new ImageIcon("Images/BigLez.png");
         BigLez = new JLabel();
-        BigLez.setBounds(0, 0, 130, 300);
+        BigLez.setBounds(0, 0, 80, 150);
         BigLez.setIcon(icon);
         BigLez.setLocation(xSize/2-this.getSize().width/2-(BigLez.getWidth()/2),ySize/2-this.getSize().height/2-(BigLez.getHeight()/2));
         this.add(BigLez);
