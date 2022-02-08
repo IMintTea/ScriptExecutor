@@ -9,8 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.Arrays;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -26,18 +28,14 @@ public class MyFrame extends JFrame implements KeyListener {
     // Home screen: 1920, 1080 School screen: 1920, 1080
     //</editor-fold>
     Boolean dead = false;
-    JLabel BigLez, Map;
+    JLabel playerJl, Map;
     JProgressBar healthBar, staminaBar, manaBar;
-    ImageIcon icon, map, youDied, InventoryButtonImage, DamageButtonImage;
+    ImageIcon playerIcon, map, youDied, InventoryButtonImage, DamageButtonImage;
     JPanel inventoryPanel, healthBarPanel, staminaBarPanel, manaBarPanel;
     public static JToggleButton inventoryButton;
     JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
-
-    public class Entity{
-        public BufferedImage up1, up2, up3, up4, down1, down2, down3, down4, left1, left2, left3, left4, right1, right2, right3, right4;
-        public String Direction;
-
-    }
+    public ImageIcon up1, up2, up3, up4, down1, down2, down3, down4, left1, left2, left3, left4, right1, right2, right3, right4;
+    int spriteCounter = 1;
 
 
 //    InventoryHandler iHandler = new InventoryHandler();
@@ -48,6 +46,25 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
     public MyFrame() {
+        up1 = new ImageIcon("Sprites/WalkingSprites/Player_up_1.png");
+        up2 = new ImageIcon("Sprites/WalkingSprites/Player_up_2.png");
+        up3 = new ImageIcon("Sprites/WalkingSprites/Player_up_3.png");
+        up4 = new ImageIcon("Sprites/WalkingSprites/Player_up_4.png");
+
+        down1 = new ImageIcon("Sprites/WalkingSprites/Player_down_1.png");
+        down2 = new ImageIcon("Sprites/WalkingSprites/Player_down_2.png");
+        down3 = new ImageIcon("Sprites/WalkingSprites/Player_down_3.png");
+        down4 = new ImageIcon("Sprites/WalkingSprites/Player_down_4.png");
+
+        left1 = new ImageIcon("Sprites/WalkingSprites/Player_left_1.png");
+        left2 = new ImageIcon("Sprites/WalkingSprites/Player_left_2.png");
+        left3 = new ImageIcon("Sprites/WalkingSprites/Player_left_3.png");
+        left4 = new ImageIcon("Sprites/WalkingSprites/Player_left_4.png");
+
+        right1 = new ImageIcon("Sprites/WalkingSprites/Player_right_1.png");
+        right2 = new ImageIcon("Sprites/WalkingSprites/Player_right_2.png");
+        right3 = new ImageIcon("Sprites/WalkingSprites/Player_right_3.png");
+        right4 = new ImageIcon("Sprites/WalkingSprites/Player_right_4.png");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
@@ -219,12 +236,29 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Player Model">
-        icon = new ImageIcon("Images/BigLez.png");
-        BigLez = new JLabel();
-        BigLez.setBounds(0, 0, 80, 150);
-        BigLez.setIcon(icon);
-        BigLez.setLocation(xSize/2-this.getSize().width/2-(BigLez.getWidth()/2),ySize/2-this.getSize().height/2-(BigLez.getHeight()/2));
-        this.add(BigLez);
+        ImageIcon character = null;
+        switch (Game.getCurrentPlayer().direction) {
+            case "up":
+                character = up1;
+                break;
+            case "down":
+                character = down1;
+                break;
+            case "left":
+                character = left1;
+                break;
+            case "right":
+                character = right1;
+                break;
+        }
+//        playerIcon = character;
+        playerJl = new JLabel();
+        playerJl.setBounds(0, 0, 100, 150);
+        playerJl.setIcon(character);
+        playerJl.setLocation(xSize/2-this.getSize().width/2-(playerJl.getWidth()/2),ySize/2-this.getSize().height/2-(playerJl.getHeight()/2));
+        playerJl.setVisible(true);
+        this.add(playerJl);
+
         //</editor-fold>
 
         //<editor-fold desc="Map">
@@ -232,7 +266,7 @@ public class MyFrame extends JFrame implements KeyListener {
         Map = new JLabel();
         Map.setIcon(map);
         Map.setBounds(0, 0, map.getIconWidth(), map.getIconHeight());
-        Map.setLocation(BigLez.getLocation());
+        Map.setLocation(playerJl.getLocation());
         // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKULiPgDxSn08wYLVRS2NNvkeQ2-pnBnvZFdKD5B7rba5b8RAclQs0rXlR-FR4zS6Heoo&usqp=CAU
         this.add(Map);
         //</editor-fold>
@@ -240,7 +274,6 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
     }
-
 
     public void InventoryButtonAction(ActionEvent e) {
         currentPlayer = Game.currentPlayer;
@@ -292,20 +325,99 @@ public class MyFrame extends JFrame implements KeyListener {
     // do vertical movement.
     @Override
     public void keyTyped(KeyEvent e) {
+        if (spriteCounter > 4){
+            spriteCounter = 1;
+        }
 
         switch (e.getKeyChar()) {
             case 'a':
-                BigLez.setLocation(BigLez.getX() - 17, BigLez.getY());
+                playerJl.setLocation(playerJl.getX() - 15, playerJl.getY());
+                Game.getCurrentPlayer().direction = "left";
+                System.out.println(Game.getCurrentPlayer().direction);
+                if (spriteCounter == 1){
+                    playerJl.setIcon(left1);
+                }
+                if (spriteCounter == 2){
+                    playerJl.setIcon(left2);
+                }
+                if (spriteCounter == 3){
+                    playerJl.setIcon(left3);
+                }
+                if (spriteCounter == 4){
+                    playerJl.setIcon(left4);
+                }
+                spriteCounter++;
+                System.out.println(playerJl.getX()+" "+playerJl.getY());
                 break;
             case 'w':
-                BigLez.setLocation(BigLez.getX(), BigLez.getY() - 17);
+                playerJl.setLocation(playerJl.getX(), playerJl.getY() - 15);
+                Game.getCurrentPlayer().direction = "up";
+                System.out.println(Game.getCurrentPlayer().direction);
+                if (spriteCounter == 1){
+                    playerJl.setIcon(up1);
+                }
+                if (spriteCounter == 2){
+                    playerJl.setIcon(up2);
+                }
+                if (spriteCounter == 3){
+                    playerJl.setIcon(up3);
+                }
+                if (spriteCounter == 4){
+                    playerJl.setIcon(up4);
+                }
+                spriteCounter++;
+                System.out.println(playerJl.getX()+" "+playerJl.getY());
                 break;
             case 's':
-                BigLez.setLocation(BigLez.getX(), BigLez.getY() + 17);
+                playerJl.setLocation(playerJl.getX(), playerJl.getY() + 15);
+                Game.getCurrentPlayer().direction = "down";
+                System.out.println(Game.getCurrentPlayer().direction);
+                if (spriteCounter == 1){
+                    playerJl.setIcon(down1);
+                }
+                if (spriteCounter == 2){
+                    playerJl.setIcon(down2);
+                }
+                if (spriteCounter == 3){
+                    playerJl.setIcon(down3);
+                }
+                if (spriteCounter == 4){
+                    playerJl.setIcon(down4);
+                }
+                spriteCounter++;
+                System.out.println(playerJl.getX()+" "+playerJl.getY());
                 break;
             case 'd':
-                BigLez.setLocation(BigLez.getX() + 17, BigLez.getY());
+                playerJl.setLocation(playerJl.getX() + 15, playerJl.getY());
+                Game.getCurrentPlayer().direction = "right";
+                System.out.println(Game.getCurrentPlayer().direction);
+                if (spriteCounter == 1){
+                    playerJl.setIcon(right1);
+                }
+                if (spriteCounter == 2){
+                    playerJl.setIcon(right2);
+                }
+                if (spriteCounter == 3){
+                    playerJl.setIcon(right3);
+                }
+                if (spriteCounter == 4){
+                    playerJl.setIcon(right4);
+                }
+                spriteCounter++;
+                System.out.println(playerJl.getX()+" "+playerJl.getY());
                 break;
+        }
+        if (playerJl.getX() <= 0) {
+            playerJl.setLocation(playerJl.getX() + 15, playerJl.getY());
+        }
+        if (playerJl.getY() <= 0) {
+            playerJl.setLocation(playerJl.getX(), playerJl.getY() + 15);
+        }
+        if (playerJl.getX() >= 1800) {
+            playerJl.setLocation(playerJl.getX() - 15, playerJl.getY());
+        }
+        if (playerJl.getY() >= 900) {
+            playerJl.setLocation(playerJl.getX(), playerJl.getY() - 15);
         }
 
     }
@@ -327,24 +439,23 @@ public class MyFrame extends JFrame implements KeyListener {
                 Map.setLocation(Map.getX(), Map.getY() + 17);
                 break;
         }
-
-        if (BigLez.getX() == 0) {
-            BigLez.setLocation(BigLez.getX() + 17, BigLez.getY());
-        }
-        if (BigLez.getY() == 0) {
-            BigLez.setLocation(BigLez.getX(), BigLez.getY() + 17);
-        }
-        if (BigLez.getX() == 1770) {
-            BigLez.setLocation(BigLez.getX() - 17, BigLez.getY());
-        }
-        if (BigLez.getY() == 840) {
-            BigLez.setLocation(BigLez.getX(), BigLez.getY() - 17);
-        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
+        switch (e.getKeyChar()) {
+            case 'a':
+                playerJl.setIcon(down1);
+                break;
+            case 'w':
+                playerJl.setIcon(down1);
+            case 's':
+                playerJl.setIcon(down1);
+                break;
+            case 'd':
+                playerJl.setIcon(down1);
+        }
         System.out.println("You released key char: " + e.getKeyChar());
         System.out.println("You released key code: " + e.getKeyCode());
     }

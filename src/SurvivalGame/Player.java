@@ -8,6 +8,7 @@ public class Player {
     Item_HealingPotion healingPotion = new Item_HealingPotion();
     Item_Poison poison = new Item_Poison();
     Item_Empty empty = new Item_Empty();
+    public String direction;
 
 
     Player(){
@@ -20,6 +21,9 @@ public class Player {
         playerItem[2] = empty;
         playerItem[3] = empty;
         playerItem[4] = empty;
+
+        direction = "down";
+
     }
 //maybe use for respawn later
 //    public void playerSetup(){
