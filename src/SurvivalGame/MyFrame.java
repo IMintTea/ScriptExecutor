@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -28,9 +29,9 @@ public class MyFrame extends JFrame implements KeyListener {
     // Home screen: 1920, 1080 School screen: 1920, 1080
     //</editor-fold>
     Boolean dead = false;
-    JLabel playerJl, Map;
+    JLabel playerJl, map, mapDetails, mapSolidObjects;
     JProgressBar healthBar, staminaBar, manaBar;
-    ImageIcon playerIcon, map, youDied, InventoryButtonImage, DamageButtonImage;
+    ImageIcon playerIcon, mapIcon, mapDetailsIcon, mapSolidObjectsIcon, youDied, InventoryButtonImage, DamageButtonImage;
     JPanel inventoryPanel, healthBarPanel, staminaBarPanel, manaBarPanel;
     public static JToggleButton inventoryButton;
     JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
@@ -46,25 +47,25 @@ public class MyFrame extends JFrame implements KeyListener {
 
 
     public MyFrame() {
-        up1 = new ImageIcon("Sprites/WalkingSprites/Player_up_1.png");
-        up2 = new ImageIcon("Sprites/WalkingSprites/Player_up_2.png");
-        up3 = new ImageIcon("Sprites/WalkingSprites/Player_up_3.png");
-        up4 = new ImageIcon("Sprites/WalkingSprites/Player_up_4.png");
+        up1 = new ImageIcon("Images/Sprites/WalkingSprites/Player_up_1.png");
+        up2 = new ImageIcon("Images/Sprites/WalkingSprites/Player_up_2.png");
+        up3 = new ImageIcon("Images/Sprites/WalkingSprites/Player_up_3.png");
+        up4 = new ImageIcon("Images/Sprites/WalkingSprites/Player_up_4.png");
 
-        down1 = new ImageIcon("Sprites/WalkingSprites/Player_down_1.png");
-        down2 = new ImageIcon("Sprites/WalkingSprites/Player_down_2.png");
-        down3 = new ImageIcon("Sprites/WalkingSprites/Player_down_3.png");
-        down4 = new ImageIcon("Sprites/WalkingSprites/Player_down_4.png");
+        down1 = new ImageIcon("Images/Sprites/WalkingSprites/Player_down_1.png");
+        down2 = new ImageIcon("Images/Sprites/WalkingSprites/Player_down_2.png");
+        down3 = new ImageIcon("Images/Sprites/WalkingSprites/Player_down_3.png");
+        down4 = new ImageIcon("Images/Sprites/WalkingSprites/Player_down_4.png");
 
-        left1 = new ImageIcon("Sprites/WalkingSprites/Player_left_1.png");
-        left2 = new ImageIcon("Sprites/WalkingSprites/Player_left_2.png");
-        left3 = new ImageIcon("Sprites/WalkingSprites/Player_left_3.png");
-        left4 = new ImageIcon("Sprites/WalkingSprites/Player_left_4.png");
+        left1 = new ImageIcon("Images/Sprites/WalkingSprites/Player_left_1.png");
+        left2 = new ImageIcon("Images/Sprites/WalkingSprites/Player_left_2.png");
+        left3 = new ImageIcon("Images/Sprites/WalkingSprites/Player_left_3.png");
+        left4 = new ImageIcon("Images/Sprites/WalkingSprites/Player_left_4.png");
 
-        right1 = new ImageIcon("Sprites/WalkingSprites/Player_right_1.png");
-        right2 = new ImageIcon("Sprites/WalkingSprites/Player_right_2.png");
-        right3 = new ImageIcon("Sprites/WalkingSprites/Player_right_3.png");
-        right4 = new ImageIcon("Sprites/WalkingSprites/Player_right_4.png");
+        right1 = new ImageIcon("Images/Sprites/WalkingSprites/Player_right_1.png");
+        right2 = new ImageIcon("Images/Sprites/WalkingSprites/Player_right_2.png");
+        right3 = new ImageIcon("Images/Sprites/WalkingSprites/Player_right_3.png");
+        right4 = new ImageIcon("Images/Sprites/WalkingSprites/Player_right_4.png");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
@@ -255,20 +256,37 @@ public class MyFrame extends JFrame implements KeyListener {
         playerJl = new JLabel();
         playerJl.setBounds(0, 0, 100, 150);
         playerJl.setIcon(character);
-        playerJl.setLocation(xSize/2-this.getSize().width/2-(playerJl.getWidth()/2),ySize/2-this.getSize().height/2-(playerJl.getHeight()/2));
+        playerJl.setLocation(1105, 30);
         playerJl.setVisible(true);
         this.add(playerJl);
 
         //</editor-fold>
 
         //<editor-fold desc="Map">
-        map = new ImageIcon("Images/Map1.png");
-        Map = new JLabel();
-        Map.setIcon(map);
-        Map.setBounds(0, 0, map.getIconWidth(), map.getIconHeight());
-        Map.setLocation(playerJl.getLocation());
-        // https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKULiPgDxSn08wYLVRS2NNvkeQ2-pnBnvZFdKD5B7rba5b8RAclQs0rXlR-FR4zS6Heoo&usqp=CAU
-        this.add(Map);
+        mapSolidObjectsIcon = new ImageIcon("Images/Map/SolidObjects.png");
+        mapSolidObjects = new JLabel();
+        mapSolidObjects.setIcon(mapSolidObjectsIcon);
+        mapSolidObjects.setSize(xSize,ySize);
+        mapSolidObjects.setLocation(0,0);
+        mapSolidObjects.setVisible(true);
+        this.add(mapSolidObjects);
+
+        mapDetailsIcon = new ImageIcon("Images/Map/GroundDetails.png");
+        mapDetails = new JLabel();
+        mapDetails.setIcon(mapDetailsIcon);
+        mapDetails.setSize(xSize,ySize);
+        mapDetails.setLocation(0,0);
+        mapDetails.setVisible(true);
+        this.add(mapDetails);
+
+        mapIcon = new ImageIcon("Images/Map/HardGround.png");
+        map = new JLabel();
+        map.setIcon(mapIcon);
+        map.setSize(xSize,ySize);
+        map.setLocation(0,0);
+        map.setVisible(true);
+        this.add(map);
+
         //</editor-fold>
         this.setVisible(true);
 
@@ -425,20 +443,6 @@ public class MyFrame extends JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        switch (e.getKeyCode()) {
-            case 39:
-                Map.setLocation(Map.getX() - 17, Map.getY());
-                break;
-            case 40:
-                Map.setLocation(Map.getX(), Map.getY() - 17);
-                break;
-            case 37:
-                Map.setLocation(Map.getX() + 17, Map.getY());
-                break;
-            case 38:
-                Map.setLocation(Map.getX(), Map.getY() + 17);
-                break;
-        }
     }
 
     @Override
