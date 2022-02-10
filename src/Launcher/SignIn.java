@@ -62,18 +62,8 @@ public class SignIn extends javax.swing.JFrame{
         signInBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String password = new String(passwordTf.getPassword());
-                ResultSet rs = Repository.login(emailTf.getText(), password);
-                try {
-                    if (rs.next()){
-                        new Launcher().setLocation(SignIn.this.getLocation());
-                        SignIn.this.dispose();
-                    }else{
-                        System.out.println("Login details are incorrect!");
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+
+                Login();
             }
         });
 
@@ -114,8 +104,19 @@ public class SignIn extends javax.swing.JFrame{
 
         //Passes text field input to the Repository.
         String password = new String(passwordTf.getPassword());
-        Repository.login(emailTf.getText(), password);
+        //Repository.login(emailTf.getText(), password);
 
+    }
+    public void Login(){
+
+        String password = new String(passwordTf.getPassword());
+        Boolean rs = Repository.login(emailTf.getText(), password);
+        if (rs == true){
+            new Launcher().setLocation(SignIn.this.getLocation());
+            SignIn.this.dispose();
+        }else{
+            System.out.println("Login details are incorrect!****************");
+        }
     }
 
 }

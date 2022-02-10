@@ -268,7 +268,7 @@ public class MyFrame extends JFrame implements KeyListener {
         mapSolidObjects.setVisible(true);
         this.add(mapSolidObjects);
 
-//        mapDetailsIcon = new ImageIcon("Images/Map/GroundDetails.png");
+        mapDetailsIcon = new ImageIcon("Images/Map/GroundDetails.png");
         mapDetails = new JLabel();
         mapDetails.setIcon(mapDetailsIcon);
         mapDetails.setSize(xSize,ySize);
@@ -276,7 +276,7 @@ public class MyFrame extends JFrame implements KeyListener {
         mapDetails.setVisible(true);
         this.add(mapDetails);
 
-//        mapIcon = new ImageIcon("Images/Map/HardGround.png");
+        mapIcon = new ImageIcon("Images/Map/HardGround.png");
         map = new JLabel();
         map.setIcon(mapIcon);
         map.setSize(xSize,ySize);
@@ -286,7 +286,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
         //</editor-fold>
         this.setVisible(true);
-        this.add(gameScreen);
+//        this.add(gameScreen);
         this.repaint();
 
 

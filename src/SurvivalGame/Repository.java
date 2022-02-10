@@ -40,17 +40,24 @@ public class Repository {
 
     }
 
-    public static ResultSet login(String Email, String Password){
+    public static Boolean login(String Email, String Password){
         ResultSet rs;
         try {
             Connection con = getConnection();
             Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String sql = "SELECT * FROM LoginTbl WHERE Email = '" + Email + "' AND password ='" + Password + "'";
-            rs = stmt.executeQuery(sql);
 
-            rs.close();
+
+            rs = stmt.executeQuery(sql);
+            if (rs.next()){
+                System.out.println("Validlogin");
+
+            return true;
+            }
+
+
             con.close();
-            return rs;
+            return false;
 
         }catch (Exception e) {
             System.out.println("Error in the repository: " + e);
