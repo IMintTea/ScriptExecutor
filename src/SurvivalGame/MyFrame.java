@@ -25,10 +25,10 @@ public class MyFrame extends JFrame implements KeyListener {
     Boolean dead = false;
     JLabel playerJl, map, mapDetails, mapSolidObjects;
     JProgressBar healthBar, staminaBar, manaBar;
-    ImageIcon playerIcon, mapIcon, mapDetailsIcon, mapSolidObjectsIcon, youDied, InventoryButtonImage, DamageButtonImage;
+    ImageIcon playerIcon, mapIcon, mapDetailsIcon, mapSolidObjectsIcon, youDied, InventoryButtonImage, settingsButtonImage;
     JPanel inventoryPanel, healthBarPanel, staminaBarPanel, manaBarPanel;
     public static JToggleButton inventoryButton;
-    JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
+    JButton settings, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
     public ImageIcon up1, up2, up3, up4, down1, down2, down3, down4, left1, left2, left3, left4, right1, right2, right3, right4;
     int spriteCounter = 1;
     private GameScreen gameScreen;
@@ -69,9 +69,7 @@ public class MyFrame extends JFrame implements KeyListener {
         this.setLocationRelativeTo(null);
         this.setUndecorated(true);
 
-
         gameScreen = new GameScreen();
-        this.add(gameScreen);
 
         //<editor-fold desc="Death">
 
@@ -133,23 +131,23 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Damage Button">
-        DamageButtonImage = new ImageIcon("Images/DamageButton.png");
-        damage = new JButton(DamageButtonImage);
-        damage.setOpaque(false);
-        damage.setForeground(white);
-        damage.setBackground(black);
-        damage.setSize(80, 80);
-        damage.setLocation((xSize / 2) + 250, 955);
-        damage.setVisible(true);
-        //this.add(damage);
-        damage.addActionListener(new ActionListener() {
+        settingsButtonImage = new ImageIcon("Images/UI/SettingsButton.png");
+        settings = new JButton(settingsButtonImage);
+        settings.setOpaque(false);
+        settings.setForeground(white);
+        settings.setBackground(black);
+        settings.setSize(80, 80);
+        settings.setLocation((xSize / 2) + 250, 955);
+        settings.setVisible(true);
+//        this.add(settings);
+        settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int damageAmount = -10;
-                healthBar.setValue((Game.getCurrentPlayer().playerHp) + damageAmount);
-                (Game.getCurrentPlayer().playerHp) = (Game.getCurrentPlayer().playerHp) + damageAmount;
-
-                System.out.println(Game.getCurrentPlayer().playerHp);
+                if(MyFrame.this.mapDetails.isVisible()){
+                    MyFrame.this.mapDetails.setVisible(false);
+                }else{
+                    MyFrame.this.mapDetails.setVisible(true);
+                }
             }
         });
         if (Game.getCurrentPlayer().playerHp <= 0) {
@@ -160,7 +158,7 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Inventory Button">
-        InventoryButtonImage = new ImageIcon("Images/InventoryButton.png");
+        InventoryButtonImage = new ImageIcon("Images/UI/InventoryButton.png");
         inventoryButton = new JToggleButton(InventoryButtonImage);
         inventoryButton.setOpaque(false);
         inventoryButton.setBackground(white);
@@ -262,7 +260,7 @@ public class MyFrame extends JFrame implements KeyListener {
         //</editor-fold>
 
         //<editor-fold desc="Map">s
-//        mapSolidObjectsIcon = new ImageIcon("Images/Map/SolidObjects.png");
+        mapSolidObjectsIcon = new ImageIcon("Images/Map/SolidObjectsT.png");
         mapSolidObjects = new JLabel();
         mapSolidObjects.setIcon(mapSolidObjectsIcon);
         mapSolidObjects.setSize(xSize,ySize);
@@ -288,6 +286,8 @@ public class MyFrame extends JFrame implements KeyListener {
 
         //</editor-fold>
         this.setVisible(true);
+        this.add(gameScreen);
+        this.repaint();
 
 
     }
