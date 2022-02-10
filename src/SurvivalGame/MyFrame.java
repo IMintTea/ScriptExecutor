@@ -8,14 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.sql.SQLOutput;
-import java.util.Arrays;
-import java.util.Map;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
+
 
 import static java.awt.Color.*;
 
@@ -37,7 +31,7 @@ public class MyFrame extends JFrame implements KeyListener {
     JButton damage, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
     public ImageIcon up1, up2, up3, up4, down1, down2, down3, down4, left1, left2, left3, left4, right1, right2, right3, right4;
     int spriteCounter = 1;
-
+    private GameScreen gameScreen;
 
 //    InventoryHandler iHandler = new InventoryHandler();
 
@@ -68,11 +62,16 @@ public class MyFrame extends JFrame implements KeyListener {
         right4 = new ImageIcon("Images/Sprites/WalkingSprites/Player_right_4.png");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(null);
+//        this.setLayout(null);
         this.addKeyListener(this);
+        this.setSize(xSize,ySize);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
         this.setUndecorated(true);
-        this.setBackground(black);
+
+
+        gameScreen = new GameScreen();
+        this.add(gameScreen);
 
         //<editor-fold desc="Death">
 
@@ -262,8 +261,8 @@ public class MyFrame extends JFrame implements KeyListener {
 
         //</editor-fold>
 
-        //<editor-fold desc="Map">
-        mapSolidObjectsIcon = new ImageIcon("Images/Map/SolidObjects.png");
+        //<editor-fold desc="Map">s
+//        mapSolidObjectsIcon = new ImageIcon("Images/Map/SolidObjects.png");
         mapSolidObjects = new JLabel();
         mapSolidObjects.setIcon(mapSolidObjectsIcon);
         mapSolidObjects.setSize(xSize,ySize);
@@ -271,7 +270,7 @@ public class MyFrame extends JFrame implements KeyListener {
         mapSolidObjects.setVisible(true);
         this.add(mapSolidObjects);
 
-        mapDetailsIcon = new ImageIcon("Images/Map/GroundDetails.png");
+//        mapDetailsIcon = new ImageIcon("Images/Map/GroundDetails.png");
         mapDetails = new JLabel();
         mapDetails.setIcon(mapDetailsIcon);
         mapDetails.setSize(xSize,ySize);
@@ -279,7 +278,7 @@ public class MyFrame extends JFrame implements KeyListener {
         mapDetails.setVisible(true);
         this.add(mapDetails);
 
-        mapIcon = new ImageIcon("Images/Map/HardGround.png");
+//        mapIcon = new ImageIcon("Images/Map/HardGround.png");
         map = new JLabel();
         map.setIcon(mapIcon);
         map.setSize(xSize,ySize);
@@ -464,5 +463,6 @@ public class MyFrame extends JFrame implements KeyListener {
         System.out.println("You released key code: " + e.getKeyCode());
     }
     //</editor-fold>
+
 }
 
