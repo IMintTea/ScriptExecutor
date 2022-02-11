@@ -115,7 +115,7 @@ public class SignIn extends javax.swing.JFrame{
             new Launcher().setLocation(SignIn.this.getLocation());
             SignIn.this.dispose();
         }else{
-            System.out.println("Login details are incorrect!****************");
+            System.out.println("Login details are incorrect!");
         }
     }
 

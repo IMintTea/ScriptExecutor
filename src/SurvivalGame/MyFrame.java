@@ -20,7 +20,6 @@ public class MyFrame extends JFrame implements KeyListener {
     int xSize = ((int) tk.getScreenSize().getWidth());
     int ySize = ((int) tk.getScreenSize().getHeight());
 
-    // Home screen: 1920, 1080 School screen: 1920, 1080
     //</editor-fold>
     Boolean dead = false;
     JLabel playerJl, map, mapDetails, mapSolidObjects, enemyJL, settings;
@@ -38,7 +37,7 @@ public class MyFrame extends JFrame implements KeyListener {
 
     Player currentPlayer;
 
-    // https://www.pinterest.co.uk/0heape4vu8xhohi/2d-tile-map/
+    
 
 
     public MyFrame() {
@@ -447,8 +446,10 @@ public class MyFrame extends JFrame implements KeyListener {
                 break;
             case 'e':
 
-                    bossHealthBar.setValue(bossHealthBar.getValue() - 10);
-                    bossHealth = bossHealth -10;
+                    if((playerJl.getX() > enemyJL.getX()-100) && (playerJl.getX() < enemyJL.getX()+100) && (playerJl.getY() > enemyJL.getY() -100) && (playerJl.getY() < enemyJL.getY() +100)){
+                        bossHealthBar.setValue(bossHealthBar.getValue() - 10);
+                        bossHealth = bossHealth -10;
+                    }
                     if (bossHealth <= 0){
                         enemyJL.setVisible(false);
                     }
