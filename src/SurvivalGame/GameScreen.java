@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class GameScreen extends JPanel{
+public class    GameScreen extends JPanel{
 
     public GameScreen(){
 

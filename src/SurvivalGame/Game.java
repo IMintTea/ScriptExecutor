@@ -12,13 +12,13 @@ public class Game {
     public static void main(String[] args) {
 
         currentPlayer = new Player();
-//        String filepath = "Music/Main.wav";
-//        Music musicObject = new Music();
-//        musicObject.playMusic(filepath);
-//        InventoryHandler iHandler = new InventoryHandler();
-        SignIn LauncherSignIn = new SignIn();
+        String filepath = "Music/Main.wav";
+        Music musicObject = new Music();
+        musicObject.playMusic(filepath);
 
-//        MyFrame frame = new MyFrame();
+//        SignIn LauncherSignIn = new SignIn();
+
+        MyFrame frame = new MyFrame();
 
 
     }

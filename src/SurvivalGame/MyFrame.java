@@ -23,15 +23,16 @@ public class MyFrame extends JFrame implements KeyListener {
     // Home screen: 1920, 1080 School screen: 1920, 1080
     //</editor-fold>
     Boolean dead = false;
-    JLabel playerJl, map, mapDetails, mapSolidObjects;
-    JProgressBar healthBar, staminaBar, manaBar;
-    ImageIcon playerIcon, mapIcon, mapDetailsIcon, mapSolidObjectsIcon, youDied, InventoryButtonImage, settingsButtonImage;
-    JPanel inventoryPanel, healthBarPanel, staminaBarPanel, manaBarPanel;
+    JLabel playerJl, map, mapDetails, mapSolidObjects, enemyJL, settings;
+    JProgressBar healthBar, staminaBar, manaBar,bossHealthBar;
+    ImageIcon playerIcon, mapIcon, mapDetailsIcon, mapSolidObjectsIcon, youDied, InventoryButtonImage, settingsButtonImage, enemyIcon;
+    JPanel buttonPanel, inventoryPanel, healthBarPanel, staminaBarPanel, manaBarPanel, bossBarPanel;
     public static JToggleButton inventoryButton;
-    JButton settings, itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
+    JButton itemButton1, itemButton2, itemButton3, itemButton4, itemButton5;
     public ImageIcon up1, up2, up3, up4, down1, down2, down3, down4, left1, left2, left3, left4, right1, right2, right3, right4;
-    int spriteCounter = 1;
+    int spriteCounter = 1, bossHealth = 100;
     private GameScreen gameScreen;
+
 
 //    InventoryHandler iHandler = new InventoryHandler();
 
@@ -71,16 +72,19 @@ public class MyFrame extends JFrame implements KeyListener {
 
         gameScreen = new GameScreen();
 
-        //<editor-fold desc="Death">
+        bossBarPanel = new JPanel();
+        bossBarPanel.setBounds(250, 250, 500, 30);
+        bossBarPanel.setLocation((xSize / 2) - 250, 0);
+        bossBarPanel.setBackground(BLACK);
+        bossBarPanel.setForeground(GRAY);
+        this.add(bossBarPanel);
 
-        youDied = new ImageIcon("Images/YouDied.png");
-        JLabel death = new JLabel();
-        death.setSize(412, 122);
-        death.setLocation((xSize / 2) - 206, 300);
-        death.setIcon(youDied);
-        this.add(death);
-        death.setVisible(dead);
-        //</editor-fold>
+        bossHealthBar = new JProgressBar(0, 100);
+        bossHealthBar.setPreferredSize(new Dimension(500, 20));
+        bossHealthBar.setValue(bossHealth);
+        bossHealthBar.setBackground(GRAY);
+        bossHealthBar.setForeground(RED);
+        bossBarPanel.add(bossHealthBar);
 
         //<editor-fold desc="Stamina Bar">
         staminaBarPanel = new JPanel();
@@ -132,29 +136,17 @@ public class MyFrame extends JFrame implements KeyListener {
 
         //<editor-fold desc="Damage Button">
         settingsButtonImage = new ImageIcon("Images/UI/SettingsButton.png");
-        settings = new JButton(settingsButtonImage);
+        settings = new JLabel();
+        settings.setIcon(settingsButtonImage);
         settings.setOpaque(false);
         settings.setForeground(white);
         settings.setBackground(black);
         settings.setSize(80, 80);
         settings.setLocation((xSize / 2) + 250, 955);
         settings.setVisible(true);
-//        this.add(settings);
-        settings.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(MyFrame.this.mapDetails.isVisible()){
-                    MyFrame.this.mapDetails.setVisible(false);
-                }else{
-                    MyFrame.this.mapDetails.setVisible(true);
-                }
-            }
-        });
-        if (Game.getCurrentPlayer().playerHp <= 0) {
-            death.setVisible(true);
-            this.repaint();
-            this.revalidate();
-        }
+        this.add(settings);
+
+
         //</editor-fold>
 
         //<editor-fold desc="Inventory Button">
@@ -168,19 +160,23 @@ public class MyFrame extends JFrame implements KeyListener {
         inventoryButton.setVisible(true);
         inventoryButton.setFocusPainted(false);
 //        inventoryButton.addActionListener(iHandler);
-        inventoryButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InventoryButtonAction(e);
-            }
-        });
+//        inventoryButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                InventoryButtonAction(e);
+//            }
+//        });
 
+        System.out.println("Press 'q' to open inventory");
+        System.out.println("Press 'e' to attack");
+        System.out.println("Press 'z' to change settings");
 
         inventoryButton.setActionCommand("inventoryButton");
-        //*this.add(inventoryButton);
+//        this.add(inventoryButton);
         //</editor-fold>
 
         //<editor-fold desc="Inventory Contents">
+
         inventoryPanel = new JPanel();
         inventoryPanel.setBackground(black);
         inventoryPanel.setForeground(black);
@@ -258,6 +254,14 @@ public class MyFrame extends JFrame implements KeyListener {
         this.add(playerJl);
 
         //</editor-fold>
+        enemyIcon = new ImageIcon("Images/Gif/enemy.gif");
+        enemyJL = new JLabel();
+        enemyJL.setIcon(enemyIcon);
+        enemyJL.setSize(256,256);
+        enemyJL.setLocation(520, 5);
+
+        this.add(enemyJL);
+
 
         //<editor-fold desc="Map">s
         mapSolidObjectsIcon = new ImageIcon("Images/Map/SolidObjectsT.png");
@@ -288,7 +292,7 @@ public class MyFrame extends JFrame implements KeyListener {
         this.setVisible(true);
 //        this.add(gameScreen);
         this.repaint();
-
+        this.revalidate();
 
     }
 
@@ -423,6 +427,40 @@ public class MyFrame extends JFrame implements KeyListener {
                 spriteCounter++;
                 System.out.println(playerJl.getX()+" "+playerJl.getY());
                 break;
+            case 'q':
+                if (currentPlayer.inventoryStatus.equals("close")) {
+
+
+                    inventoryPanel.setVisible(true);
+
+                    currentPlayer.inventoryStatus = "Open";
+
+
+                } else {
+
+                    inventoryPanel.setVisible(false);
+
+                    currentPlayer.inventoryStatus = "close";
+
+
+                }
+                break;
+            case 'e':
+
+                    bossHealthBar.setValue(bossHealthBar.getValue() - 10);
+                    bossHealth = bossHealth -10;
+                    if (bossHealth <= 0){
+                        enemyJL.setVisible(false);
+                    }
+
+                break;
+            case 'z':
+
+                if(MyFrame.this.mapDetails.isVisible()){
+                    MyFrame.this.mapDetails.setVisible(false);
+                }else{
+                    MyFrame.this.mapDetails.setVisible(true);
+                }
         }
         if (playerJl.getX() <= 0) {
             playerJl.setLocation(playerJl.getX() + 15, playerJl.getY());
