@@ -16,9 +16,8 @@ public class Game {
         Music musicObject = new Music();
         musicObject.playMusic(filepath);
 
-//        SignIn LauncherSignIn = new SignIn();
+        SignIn LauncherSignIn = new SignIn();
 
-        MyFrame frame = new MyFrame();
 
 
     }
