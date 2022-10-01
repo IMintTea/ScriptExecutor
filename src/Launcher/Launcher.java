@@ -1,14 +1,9 @@
 package Launcher;
 
-import SurvivalGame.MyFrame;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Launcher.SignIn;
-import static java.awt.Color.black;
-import static java.awt.Color.white;
 
 public class Launcher extends javax.swing.JFrame{
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -39,7 +34,7 @@ public class Launcher extends javax.swing.JFrame{
         playBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MyFrame();
+
                 Launcher.this.dispose();
             }
         });

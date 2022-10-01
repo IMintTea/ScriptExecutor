@@ -1,6 +1,6 @@
 package Launcher;
 
-import SurvivalGame.Repository;
+import ExecutorMain.Repository;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,12 +10,16 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 public class SignUp extends javax.swing.JFrame{
     Toolkit tk = Toolkit.getDefaultToolkit();
     int xSize = ((int) tk.getScreenSize().getWidth());
     int ySize = ((int) tk.getScreenSize().getHeight());
+
+    MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
 
     private JTextField emailTf;
     private JPasswordField passwordTf;
@@ -31,7 +35,7 @@ public class SignUp extends javax.swing.JFrame{
     private JTextField accountNameTf;
     private JLabel accountNameLb;
 
-    public SignUp(){
+    public SignUp() throws NoSuchAlgorithmException {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(new Dimension(1070,700));
         this.setLocation(xSize/2,ySize/2);
@@ -115,7 +119,12 @@ public class SignUp extends javax.swing.JFrame{
 
                 if (validName == true && validEmail == true && validPassword == true) {
                     //enter details into database. Apache email verify
-                    Repository.inputSignUpDetails(accountNameTf.getText(),emailTf.getText(),password);
+
+
+                    messageDigest.update(password.getBytes());
+                    String stringHash = new String(messageDigest.digest());
+
+                    Repository.inputSignUpDetails(accountNameTf.getText(),emailTf.getText(),stringHash);
 
                 }
             }

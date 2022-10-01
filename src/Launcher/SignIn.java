@@ -1,22 +1,17 @@
 package Launcher;
 
-import SurvivalGame.MyFrame;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.xml.stream.Location;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.security.NoSuchAlgorithmException;
 
 import Launcher.SignUp;
-import SurvivalGame.Repository;
+import ExecutorMain.Repository;
 
 public class SignIn extends javax.swing.JFrame{
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -73,7 +68,11 @@ public class SignIn extends javax.swing.JFrame{
         signUpBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SignUp().setLocation(SignIn.this.getLocation());
+                try {
+                    new SignUp().setLocation(SignIn.this.getLocation());
+                } catch (NoSuchAlgorithmException ex) {
+                    throw new RuntimeException(ex);
+                }
                 SignIn.this.dispose();
             }
         });
