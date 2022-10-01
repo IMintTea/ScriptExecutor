@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class Repository {
 
-    private static final String DatabaseLocation = System.getProperty("user.dir") + "\\SurvivalGameDatabase.accdb";
+    private static final String DatabaseLocation = System.getProperty("user.dir") + "\\ExecutorDatabase.accdb";
 
     public static Connection getConnection() {
         try {
