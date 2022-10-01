@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import Launcher.SignUp;
@@ -57,8 +58,11 @@ public class SignIn extends javax.swing.JFrame{
         signInBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Login();
+                try {
+                    Login();
+                } catch (NoSuchAlgorithmException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -102,14 +106,19 @@ public class SignIn extends javax.swing.JFrame{
         }
 
         //Passes text field input to the Repository.
-        String password = new String(passwordTf.getPassword());
+
         //Repository.login(emailTf.getText(), password);
 
     }
-    public void Login(){
+    public void Login() throws NoSuchAlgorithmException {
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
 
         String password = new String(passwordTf.getPassword());
-        Boolean rs = Repository.login(emailTf.getText(), password);
+
+        messageDigest.update(password.getBytes());
+        String stringHash = new String(messageDigest.digest());
+
+        Boolean rs = Repository.login(emailTf.getText(), stringHash);
         if (rs == true){
             new Launcher().setLocation(SignIn.this.getLocation());
             SignIn.this.dispose();
