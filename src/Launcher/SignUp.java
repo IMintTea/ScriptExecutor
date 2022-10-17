@@ -117,15 +117,17 @@ public class SignUp extends javax.swing.JFrame{
                     System.out.println("Passwords do not match!");
                 }
 
+
                 if (validName == true && validEmail == true && validPassword == true) {
                     //enter details into database. Apache email verify
-
 
                     messageDigest.update(password.getBytes());
                     String stringHash = new String(messageDigest.digest());
 
                     Repository.inputSignUpDetails(accountNameTf.getText(),emailTf.getText(),stringHash);
 
+                }else{
+                    System.out.println("Error signing up.");
                 }
             }
         });
